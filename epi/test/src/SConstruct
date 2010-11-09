@@ -1,0 +1,25 @@
+Import('env') 
+
+# insert types lib at start of libs list
+typetest_env = env.Copy()
+typetest_env['LIBS'].insert(0, 'erltypes')
+typetest_env.Append(LIBS = 'minicppunit')
+typetest_env.Append(LIBPATH = './MiniCppUnit')
+typetest_env.Append(CPPPATH = './MiniCppUnit')
+
+# insert epi lib at start of libs list
+epitest_env = env.Copy()
+epitest_env['LIBS'].insert(0, 'epi')
+
+test_programs = []
+
+test_programs += typetest_env.Program(target='erltypestest', source = 'ErlTypesTest.cpp')
+test_programs += epitest_env.Program(target='mailboxtest', source = 'MailBoxTest.cpp')
+test_programs += epitest_env.Program(target='selfnodetest', source = 'SelfNodeTest.cpp')
+test_programs += epitest_env.Program(target='autonodetest', source = 'AutoNodeTest.cpp')
+test_programs += epitest_env.Program(target='misctest', source = 'MiscTest.cpp')
+
+SConscript('MiniCppUnit/SConstruct')
+
+Alias('check', 'build_epi')
+Alias('check', test_programs)

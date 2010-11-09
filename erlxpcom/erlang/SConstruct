@@ -1,0 +1,33 @@
+import os
+
+Import('*')
+
+# Generate the erlxpcom_error.hrl
+nserror_builder = Builder(action = os.path.join(Dir('.').path, 'gen-nsError.pl') + 
+								   ' < $SOURCE > $TARGET')
+env.Append(BUILDERS = {'NSError': nserror_builder})
+env.NSError('erlxpcom_error.hrl', NSERROR_H_PATH)
+
+# Default paths 
+env.Append(ERLINCLUDE = [Dir(".")])
+env.Append(ERLPATH = [Dir(".")])
+
+erlang_sources = Split(""" 
+	logger.erl logger_test.erl
+	erlxpcom_request_transport.erl erlxpcom_orb.erl erlxpcom_call.erl
+	xpcom_object.erl object_proxy.erl component_loader.erl	
+	ns_generic_factory.erl ns_generic_module.erl
+	""")
+
+
+beams = []
+
+for erlang_source in erlang_sources: 
+	beam = env.Beam(erlang_source)
+	beams.append(beam)
+
+env.Depends(beams, 'erlxpcom_error.hrl')
+
+install_component_beams = Install(
+	os.path.join(MOZILLA_COMPONENTS_PATH, 'libErlXPCOM.beams'), beams) 
+Alias('install', install_component_beams)

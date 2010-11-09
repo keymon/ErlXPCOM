@@ -1,0 +1,191 @@
+/*
+***** BEGIN LICENSE BLOCK *****
+
+This file is part of the XPInterface Component.
+
+Copyright (C) 2005 Hector Rivas Gandara <keymon@gmail.com>
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+***** END LICENSE BLOCK *****
+*/
+
+#include "nsISupports.idl"
+#include "lfIErlTerm.idl"
+#include "lfIErlAtom.idl"
+#include "lfIErlLong.idl"
+#include "lfIErlDouble.idl"
+#include "lfIErlString.idl"
+#include "lfIErlPid.idl"
+#include "lfIErlPort.idl"
+#include "lfIErlRef.idl"
+#include "lfIErlBinary.idl"
+#include "lfIErlList.idl"
+#include "lfIErlEmptyList.idl"
+#include "lfIErlConsList.idl"
+#include "lfIErlVariable.idl"
+#include "lfIErlTuple.idl"
+#include "lfINode.idl"
+
+[scriptable, uuid(7eac2af8-0efb-44f5-b86f-158b34e0f3f3)]
+
+interface lfIXPInterfaceHelper : nsISupports
+{
+    /**
+	 * Create a new auto node. 
+	 * @param aNodeName Node name
+	 * @param aCookie Cookie to use
+	 */
+    lfINode newNode(in string aNodeName, in string aCookie);
+
+    /**
+     * Create a new Atom
+     * @param atom The atom value
+     */
+    lfIErlAtom newAtom(in string atom);
+
+    /**
+     * Create a new Long
+     * @param value The Long value
+     */
+    lfIErlLong newLong(in long long value);
+
+    /**
+     * Create a new Double
+     * @param value The Double value
+     */
+    lfIErlDouble newDouble(in double value);
+
+    /**
+     * Create a new String
+     * @param value The string value
+     */
+    lfIErlString newString(in string value);
+
+    /**
+     * Create a new Binary from an array
+     * @param count size of the binary
+     * @param data binary data
+     */
+    lfIErlBinary newBinary(in unsigned long count,
+                           [array, size_is (count)] in octet data);
+
+    /**
+     * Create an Erlang pid from its components.
+	 * NOTE: Do not use this function, pids should not be created manually, 
+	 * use the lfINode.createPid() instead.
+     * @param node the nodename.
+     * @param id an arbitrary number. Only the low order 15 bits will
+     * be used.
+     * @param serial another arbitrary number. Only the low order 13 bits
+     * will be used.
+     * @param creation yet another arbitrary number. Only the low order
+     * 2 bits will be used.
+     **/
+    lfIErlPid newPid(in string node, in unsigned long id,
+                     in unsigned long serial, in unsigned long creation);
+
+    /**
+     * Create an old style Erlang ref from its components.
+	 * NOTE: Do not use this function, refs should not be created manually, 
+	 * use the lfINode.createRef() instead.
+     * @param node the nodename.
+     * @param id an arbitrary number. Only the low order 15 bits will
+     * be used.
+     * @param creation yet another arbitrary number. Only the low order
+     * 2 bits will be used.
+     **/
+    lfIErlRef newOldStyleRef(in string node,
+                             in unsigned long id, in unsigned long creation);
+
+    /**
+     * Create an new style Erlang ref from its components.
+	 * NOTE: Do not use this function, refs should not be created manually, 
+	 * use the lfINode.createRef() instead.
+     * @param node the nodename.
+     * @param id0 an arbitrary number. Only the low order 18 bits will
+     * be used.
+     * @param id1 an arbitrary number.
+     * @param id2 an arbitrary number.
+     * @param creation yet another arbitrary number. Only the low order
+     * 2 bits will be used.
+     **/
+    lfIErlRef newNewStyleRef(in string node,
+                             in unsigned long id0, in unsigned long id1,
+                             in unsigned long id2, in unsigned long creation);
+
+    /**
+     * Create an Erlang port from its components.
+	 * NOTE: Do not use this function, ports should not be created manually, 
+	 * use the lfINode.createPort() instead.
+     * @param node the nodename.
+     * @param id an arbitrary number. Only the low order 18 bits will
+     * be used.
+     * @param creation yet another arbitrary number. Only the low order
+     * 2 bits will be used.
+     **/
+    lfIErlPort newPort(in string node, in unsigned long id, in unsigned long creation);
+
+
+    /**
+     * Create a new Tuple. The created ErlTuple have unitialized
+     * elements, and they must be initialized with lfIErlTerm.initElement().
+     * @param arity Size of the tuple.
+     */
+    lfIErlTuple newTuple(in unsigned long arity);
+
+    /**
+     * Create a new Tuple from an array of terms
+     * @param arity Size of the tuple.
+     * @param terms terms to use
+     */
+    lfIErlTuple newTupleFromArray(in unsigned long arity,
+                                  [array, size_is (arity)] in lfIErlTerm terms);
+
+
+    /**
+     * Create a new EmptyList
+     */
+    lfIErlEmptyList newEmptyList();
+
+    /**
+     * Create a new ConsList without elements to be initialized
+     */
+    lfIErlConsList newConsList();
+
+    /**
+     * Create a proper list from an array of elements
+     * @param arity length of the list.
+     * @param terms terms to use
+     */
+    lfIErlList newList(in unsigned long arity,
+                         [array, size_is (arity)] in lfIErlTerm terms);
+
+    /**
+     * Create a variable
+     * @param name Variable name
+     */
+    lfIErlVariable newVariable(in string name);
+
+    /**
+     * lfIErlTerm native factory method. Constructs a valid lfIErlTerm from
+     * an ErlTerm. It checks the type of the ErlTerm and calls
+     * the appropiate constructor.
+     */
+    [noscript] lfIErlTerm createErlTerm(in lfNativeErlTerm aETerm);
+
+
+};
+

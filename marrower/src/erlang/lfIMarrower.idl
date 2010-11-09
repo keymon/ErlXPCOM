@@ -1,0 +1,74 @@
+#include "nsISupports.idl"
+#include "nsISimpleEnumerator.idl"
+
+#include "lfITaskVO.idl"
+#include "lfIUserVO.idl"
+
+/**
+ * Interfaz principal do compoñente Marrower. 
+ * Interactúa directamente co servidor de tareas e implementa
+ * todos os casos de uso
+ */
+[scriptable, uuid(5c4e36cc-898f-4912-b85c-e78e94993ca7)]
+interface lfIMarrower : nsISupports 
+{
+
+	/** Listar todos os usuarios */
+	void listAllUsers(
+		out unsigned long count, 
+		[array, size_is(count)] out short states,
+		[array, size_is(count)] out string logins,
+		[array, size_is(count)] out string aliases);
+	
+	/** Obter toda a información dun usuario */
+	lfIUserVO getUserInfo(in string login);
+	
+	/** Enviar unha mesaxe a un usuario */
+	void sendMessage(in string toLogin, in string Message);
+
+	/** Facer login no servidor. */
+	void login(in string login, in string alias);
+
+	/** Facer logout no servidor */
+	void logout();
+
+	/** Devolve todas as operacións nun enumerador */
+	nsISimpleEnumerator findAllTasks();
+	
+	/** Buscar unha tarefa concreta por id */
+	lfITaskVO findTaskById(in long id);
+	
+	/** Buscar tarefas asignadas para determinado login */
+	void findTaskByAssigned(
+		in string login,
+		out unsigned long count, 
+		[retval, array, size_is(count)] out lfITaskVO tasks);
+	
+	/** crear unha taref */
+	lfITaskVO createTask(in lfITaskVO task);
+
+	/** Actualizar unha tarefa */
+	void updateTask(in lfITaskVO task);
+	
+	/** Borrar tarefa */
+	void removeTask(in long id);
+
+	/** Busca todas as tarefas predecesoras a unha dada */
+	void findPredepends(
+		in long id, 
+		out unsigned long count, 
+		[retval, array, size_is(count)] out long ids);
+
+	/** Busca todas as tarefas sucesoras a unha dada */
+	void findPostdepends(
+		in long id, 
+		out unsigned long count, 
+		[retval, array, size_is(count)] out long ids);
+
+	/** Agrega unha relacion */
+	void addRelation(in long id1, in long id2);
+
+	/** Borra unha relacion */
+	void removeRelation(in long id1, in long id2);
+
+};

@@ -1,0 +1,523 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 39;
+	objects = {
+		1607B16B0872E98000B7EF35 = {
+			children = (
+				1607B19F0872ECBC00B7EF35,
+				1607B19E0872ECB200B7EF35,
+				1607B16C0872E99F00B7EF35,
+			);
+			isa = PBXGroup;
+			path = overlay;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1607B16C0872E99F00B7EF35 = {
+			explicitFileType = text.xml;
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			path = users.xul;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1607B19E0872ECB200B7EF35 = {
+			explicitFileType = text.xml;
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			path = tasks.xul;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1607B19F0872ECBC00B7EF35 = {
+			explicitFileType = text.xml;
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			path = task_details.xul;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167779F30869835100C056FE = {
+			children = (
+				167780C3086C143100C056FE,
+				1677809B086C12F200C056FE,
+				16777A970869C8A700C056FE,
+			);
+			isa = PBXGroup;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167779F50869835100C056FE = {
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		167779F60869835100C056FE = {
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+		167779F70869835100C056FE = {
+			buildSettings = {
+			};
+			buildStyles = (
+				167779F50869835100C056FE,
+				167779F60869835100C056FE,
+			);
+			hasScannedForEncodings = 0;
+			isa = PBXProject;
+			mainGroup = 167779F30869835100C056FE;
+			projectDirPath = "";
+			targets = (
+				16777A780869C7F600C056FE,
+				1677812B086C16DC00C056FE,
+			);
+		};
+		16777A780869C7F600C056FE = {
+			buildArgumentsString = .;
+			buildPhases = (
+			);
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PATH = "/sw/bin:/sw/sbin:/Users/keymon/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/lib/portage/bin/:/usr/local/teTeX/bin/powerpc-apple-darwin-current:/usr/X11R6/bin";
+				PRODUCT_NAME = dot;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+			};
+			buildToolPath = /sw/bin/scons;
+			dependencies = (
+			);
+			isa = PBXLegacyTarget;
+			name = dot;
+			passBuildSettingsInEnvironment = 1;
+			productName = dot;
+		};
+		16777A970869C8A700C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.scons;
+			path = SConstruct;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1677809B086C12F200C056FE = {
+			children = (
+				16913BE0086D5355006C94BD,
+				1677838D086C3F8200C056FE,
+				1677809C086C12F200C056FE,
+			);
+			isa = PBXGroup;
+			path = src;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1677809C086C12F200C056FE = {
+			children = (
+				1677921E086CF46200C056FE,
+				1677921D086CF44000C056FE,
+				167791F9086CF08D00C056FE,
+				1677809F086C12F200C056FE,
+				167780A0086C12F200C056FE,
+				167780A1086C12F200C056FE,
+				167780A2086C12F200C056FE,
+				167780A3086C12F200C056FE,
+				167780A4086C12F200C056FE,
+				167780A5086C12F200C056FE,
+				167780A6086C12F200C056FE,
+				167780A7086C12F200C056FE,
+				167780A8086C12F200C056FE,
+				167780AA086C12F200C056FE,
+				167780AC086C12F200C056FE,
+				167780AD086C12F200C056FE,
+				167780AE086C12F200C056FE,
+				167780B0086C12F200C056FE,
+				167780B1086C12F200C056FE,
+				167780B3086C12F200C056FE,
+				167780B4086C12F200C056FE,
+			);
+			isa = PBXGroup;
+			path = erlang;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1677809F086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = default_task_db.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A0086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = default_user_db.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A1086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = lfIMarrower.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A2086C12F200C056FE = {
+			explicitFileType = text;
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			path = lfIMarrower.idl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A3086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = lfITaskVO.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A4086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = lfITaskVO.idl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A5086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = lfMarrower.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A6086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = lfListSimpleEnumerator.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A7086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = lfTaskVO.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780A8086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = marrower_component.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780AA086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = marrower_server.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780AC086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = marrower_test.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780AD086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = nsISimpleEnumerator.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780AE086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.scons;
+			path = SConstruct;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780B0086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = task_db.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780B1086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = task_db.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780B3086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = user_db.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780B4086C12F200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = user_db.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167780C3086C143100C056FE = {
+			explicitFileType = text.script.python;
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			path = custom.py;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1677812B086C16DC00C056FE = {
+			buildArgumentsString = install;
+			buildPhases = (
+			);
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PATH = "/sw/bin:/sw/sbin:/Users/keymon/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/lib/portage/bin/:/usr/local/teTeX/bin/powerpc-apple-darwin-current:/usr/X11R6/bin";
+				PRODUCT_NAME = dot;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+			};
+			buildToolPath = /sw/bin/scons;
+			dependencies = (
+			);
+			isa = PBXLegacyTarget;
+			name = install;
+			passBuildSettingsInEnvironment = 1;
+			productName = dot;
+		};
+		1677838D086C3F8200C056FE = {
+			children = (
+				1677838E086C3F9300C056FE,
+			);
+			isa = PBXGroup;
+			path = test;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1677838E086C3F9300C056FE = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = marrower_test.js;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167791F9086CF08D00C056FE = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = lfIUserVO.idl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1677921D086CF44000C056FE = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = lfIUserVO.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1677921E086CF46200C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = lfUserVO.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16913BE0086D5355006C94BD = {
+			children = (
+				16913BE1086D5355006C94BD,
+			);
+			isa = PBXGroup;
+			path = XULView;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16913BE1086D5355006C94BD = {
+			children = (
+				16913C2D086D610B006C94BD,
+				16913BE2086D5355006C94BD,
+			);
+			isa = PBXGroup;
+			path = marrower;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16913BE2086D5355006C94BD = {
+			children = (
+				1607B16B0872E98000B7EF35,
+				16AE467B08716D42004EC1A4,
+				16AE466708716D1B004EC1A4,
+				16AE465208716B71004EC1A4,
+				16AE465108716B65004EC1A4,
+				16AE41AD0870C8E3004EC1A4,
+				16AE41830870C6D2004EC1A4,
+				16914669086E28BF006C94BD,
+				169141C7086DDFB0006C94BD,
+				16913F92086D96EE006C94BD,
+				16913BE3086D5367006C94BD,
+			);
+			isa = PBXGroup;
+			path = content;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16913BE3086D5367006C94BD = {
+			explicitFileType = text.html;
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = html;
+			path = marrower.xul;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16913C2D086D610B006C94BD = {
+			children = (
+				16913D29086D6A3B006C94BD,
+				16913C2E086D610B006C94BD,
+			);
+			isa = PBXGroup;
+			path = locale;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16913C2E086D610B006C94BD = {
+			children = (
+				16913C2F086D610B006C94BD,
+			);
+			isa = PBXGroup;
+			path = "gl-ES";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16913C2F086D610B006C94BD = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			name = marrower.dtd;
+			path = "src/XULView/marrower/locale/gl-ES/marrower.dtd";
+			refType = 2;
+			sourceTree = SOURCE_ROOT;
+		};
+		16913D29086D6A3B006C94BD = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = contents.rdf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16913F92086D96EE006C94BD = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = chat.xul;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		169141C7086DDFB0006C94BD = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			path = contents.rdf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16914669086E28BF006C94BD = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = default.css;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16AE41830870C6D2004EC1A4 = {
+			explicitFileType = text.xml;
+			fileEncoding = 12;
+			isa = PBXFileReference;
+			path = edit_task.xul;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16AE41AD0870C8E3004EC1A4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = edit_task.js;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16AE465108716B65004EC1A4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = controller.js;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16AE465208716B71004EC1A4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = utils.js;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16AE466708716D1B004EC1A4 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = marrower.js;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16AE467B08716D42004EC1A4 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = marrower2.js;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+	};
+	rootObject = 167779F70869835100C056FE;
+}

@@ -1,0 +1,13 @@
+env = Environment(CPPFLAGS = '-pedantic -ansi',  CPPPATH = '.', LIBPATH = '.')
+
+miniccpunit = env.Library(target = 'minicppunit', 
+	    		source = ['MiniCppUnit.cxx', 'TestsRunner.cxx'])
+
+mcu_example = env.Program(target = 'mcu_example', 
+				source = 'MiniCppUnitExample.cxx',
+				LIBS = 'minicppunit')
+		
+#Default(miniccpunit)
+#Alias('sample', mcu_example)
+	    
+

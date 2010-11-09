@@ -1,0 +1,888 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 39;
+	objects = {
+		16002654084101E900F0772E = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlangCall.cpp;
+			path = src/ErlangCall.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16002655084101E900F0772E = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlangCall.h;
+			path = src/ErlangCall.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16002656084101E900F0772E = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMProxy.cpp;
+			path = src/ErlXPCOMProxy.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16002657084101E900F0772E = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMProxy.h;
+			path = src/ErlXPCOMProxy.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D044084EF85B00068AA1 = {
+			children = (
+				16778D26086CC58000C056FE,
+				1630D0AC084EFDC600068AA1,
+				1630D07C084EFAE100068AA1,
+				1630D07D084EFAE100068AA1,
+				1630D07E084EFAE100068AA1,
+				1630D07F084EFAE100068AA1,
+				1630D080084EFAE100068AA1,
+				1630D081084EFAE100068AA1,
+				1630D082084EFAE100068AA1,
+				1630D083084EFAE100068AA1,
+				1630D084084EFAE100068AA1,
+				1630D085084EFAE100068AA1,
+				1630D086084EFAE100068AA1,
+				1630D087084EFAE100068AA1,
+				1630D088084EFAE100068AA1,
+			);
+			isa = PBXGroup;
+			path = test;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D07C084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = testRequestTransport.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D07D084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = testNSPRUtils.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D07E084EFAE100068AA1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = "compiled.mach-o.objfile";
+			path = TestErlXPCOMComponent.os;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D07F084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.javascript;
+			path = testErlXPCOMComponent.js;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D080084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = TestErlXPCOMComponent.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D081084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = TestErlXPCOMComponent.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D082084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = rbXPCOMTest.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D083084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = rbIXPCOMTest.idl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D084084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = mesaxes;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D085084EFAE100068AA1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			path = ITestErlXPCOMComponent.xpt;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D086084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = ITestErlXPCOMComponent.idl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D087084EFAE100068AA1 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = ITestErlXPCOMComponent.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D088084EFAE100068AA1 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = erlxpcom_test.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1630D0AC084EFDC600068AA1 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.scons;
+			path = SConstruct;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16573C3D08197A4B00085ED0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Call.h;
+			path = src/Call.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16573C5C08197F8900085ED0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Call.cpp;
+			path = src/Call.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16573C6C081982F300085ED0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlangOrb.h;
+			path = src/ErlangOrb.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16573C8208198C2600085ED0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlangOrb.cpp;
+			path = src/ErlangOrb.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16573C8308198EBF00085ED0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMStub.cpp;
+			path = src/ErlXPCOMStub.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16573C8408198EC600085ED0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMStub.h;
+			path = src/ErlXPCOMStub.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16573CD2081A7F5800085ED0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XPCOMCall.h;
+			path = src/XPCOMCall.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16573CD3081A805A00085ED0 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = XPCOMCall.cpp;
+			path = src/XPCOMCall.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16580797083DD24D0053F1A3 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = erlxpcom_call.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		166C39BB08391C3100E5A7B9 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = erlang;
+			lastKnownFileType = text;
+			path = erlxpcom_orb.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		166C39C408391FA800E5A7B9 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = erlxpcom.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		166C39EA0839236A00E5A7B9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = erlang;
+			lastKnownFileType = text;
+			path = erlxpcom_request_transport.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		166C3A6008392C7D00E5A7B9 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = erlang;
+			lastKnownFileType = text;
+			path = erlxpcom_orb.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		166C3A6108392C8900E5A7B9 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = erlang;
+			lastKnownFileType = text;
+			path = erlxpcom.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		166C3A8008392DB800E5A7B9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = erlang;
+			lastKnownFileType = text;
+			path = erlxpcom_util.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		166C3BD8083A042300E5A7B9 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = shell.python;
+			lastKnownFileType = text;
+			path = SConstruct;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		166C3CCB083A3D1400E5A7B9 = {
+			buildArgumentsString = "erlang install";
+			buildPhases = (
+			);
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = test;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+			};
+			buildToolPath = /sw/bin/scons;
+			dependencies = (
+			);
+			isa = PBXLegacyTarget;
+			name = erlang;
+			passBuildSettingsInEnvironment = 1;
+			productName = test;
+		};
+		1671822008432F4800C0D32D = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMMethodInfo.cpp;
+			path = src/ErlXPCOMMethodInfo.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1671822108432F4800C0D32D = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMMethodInfo.h;
+			path = src/ErlXPCOMMethodInfo.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167182970843334A00C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMMethodVisitor.cpp;
+			path = src/ErlXPCOMMethodVisitor.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167182980843335500C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMMethodVisitor.h;
+			path = src/ErlXPCOMMethodVisitor.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167182A20843345F00C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMMethod.h;
+			path = src/ErlXPCOMMethod.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167182A30843346500C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMMethod.cpp;
+			path = src/ErlXPCOMMethod.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167184700843A22200C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMMethodMarshaller.h;
+			path = src/ErlXPCOMMethodMarshaller.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167184710843A22D00C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMMethodMarshaller.cpp;
+			path = src/ErlXPCOMMethodMarshaller.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167185320843C30D00C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMMethodUnmarshaller.cpp;
+			path = src/ErlXPCOMMethodUnmarshaller.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167185330843C31300C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMMethodUnmarshaller.h;
+			path = src/ErlXPCOMMethodUnmarshaller.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167186610843D9D000C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMLocalMethod.h;
+			path = src/ErlXPCOMLocalMethod.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		167186620843D9D700C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMLocalMethod.cpp;
+			path = src/ErlXPCOMLocalMethod.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1671899D08447A7900C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMRemoteMethod.cpp;
+			path = src/ErlXPCOMRemoteMethod.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1671899E08447A8000C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMRemoteMethod.h;
+			path = src/ErlXPCOMRemoteMethod.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16718D740845060A00C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = erlxpcom_glue.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16718E7D08452E8200C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = ns_generic_module.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16718ED40845322A00C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = erlxpcom_iids.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1671952A0845493100C0D32D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = ns_generic_factory.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16778D26086CC58000C056FE = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = testErlXPCOMComponent.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1678C89F0845D323003E5A32 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = component_loader.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1678C9430845DD72003E5A32 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMLoader.cpp;
+			path = src/ErlXPCOMLoader.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1678C9830845E329003E5A32 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMInit.cpp;
+			path = src/ErlXPCOMInit.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1678C9840845E32E003E5A32 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMInit.h;
+			path = src/ErlXPCOMInit.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16804BB00817B64D000CA7BA = {
+			isa = PBXFileReference;
+			lastKnownFileType = "wrapper.pb-project";
+			name = epi.xcode;
+			path = /Users/keymon/Proxecto/src/epi/epi.xcode;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		16804BB10817B64D000CA7BA = {
+			children = (
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		168ADD19081E484100F1A17A = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMLog.cpp;
+			path = src/ErlXPCOMLog.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		168ADD1A081E484100F1A17A = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMLog.h;
+			path = src/ErlXPCOMLog.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		168E8CB0083B448A0092BB4D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = erlang;
+			lastKnownFileType = sourcecode.erlang;
+			path = xpcom_object.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		168E8CC6083B4AE20092BB4D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = logger.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		168E8CD3083B4C310092BB4D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = logger.hrl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		168E8DDC083B60BF0092BB4D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = logger_test.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		168E8FBA083C09100092BB4D = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.erlang;
+			path = object_proxy.erl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		169CCACB0834BC1000ACFE8E = {
+			children = (
+				1678C89F0845D323003E5A32,
+				1671952A0845493100C0D32D,
+				16718ED40845322A00C0D32D,
+				16718E7D08452E8200C0D32D,
+				16718D740845060A00C0D32D,
+				16580797083DD24D0053F1A3,
+				168E8FBA083C09100092BB4D,
+				168E8DDC083B60BF0092BB4D,
+				168E8CD3083B4C310092BB4D,
+				168E8CC6083B4AE20092BB4D,
+				168E8CB0083B448A0092BB4D,
+				166C3BD8083A042300E5A7B9,
+				166C3A8008392DB800E5A7B9,
+				166C3A6108392C8900E5A7B9,
+				166C3A6008392C7D00E5A7B9,
+				166C39EA0839236A00E5A7B9,
+				166C39C408391FA800E5A7B9,
+				166C39BB08391C3100E5A7B9,
+			);
+			isa = PBXGroup;
+			path = erlang;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CC4F08163E0900AA3663 = {
+			children = (
+				1630D044084EF85B00068AA1,
+				16804BB00817B64D000CA7BA,
+				16D6CECE0816BA8A00AA3663,
+				16D6CECD0816BA7A00AA3663,
+				169CCACB0834BC1000ACFE8E,
+				16D6CC8B081640FE00AA3663,
+			);
+			isa = PBXGroup;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CC5108163E0900AA3663 = {
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		16D6CC5208163E0900AA3663 = {
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+		16D6CC5308163E0900AA3663 = {
+			buildSettings = {
+			};
+			buildStyles = (
+				16D6CC5108163E0900AA3663,
+				16D6CC5208163E0900AA3663,
+			);
+			hasScannedForEncodings = 0;
+			isa = PBXProject;
+			mainGroup = 16D6CC4F08163E0900AA3663;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 16804BB10817B64D000CA7BA;
+					ProjectRef = 16804BB00817B64D000CA7BA;
+				},
+			);
+			targets = (
+				16D6CEF40816BC3000AA3663,
+				166C3CCB083A3D1400E5A7B9,
+			);
+		};
+		16D6CC5908163E8000AA3663 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = RequestTransport.h;
+			path = src/RequestTransport.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CC5A08163E8000AA3663 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = RequestTransport.cpp;
+			path = src/RequestTransport.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CC8B081640FE00AA3663 = {
+			children = (
+				16E92DCE084BAED5001AF9D6,
+				16E92DCF084BAED5001AF9D6,
+				1678C9840845E32E003E5A32,
+				1678C9830845E329003E5A32,
+				1678C9430845DD72003E5A32,
+				1671899E08447A8000C0D32D,
+				1671899D08447A7900C0D32D,
+				167186620843D9D700C0D32D,
+				167186610843D9D000C0D32D,
+				167185330843C31300C0D32D,
+				167185320843C30D00C0D32D,
+				167184710843A22D00C0D32D,
+				167184700843A22200C0D32D,
+				167182A30843346500C0D32D,
+				167182A20843345F00C0D32D,
+				167182980843335500C0D32D,
+				167182970843334A00C0D32D,
+				1671822008432F4800C0D32D,
+				1671822108432F4800C0D32D,
+				16002654084101E900F0772E,
+				16002655084101E900F0772E,
+				16002656084101E900F0772E,
+				16002657084101E900F0772E,
+				16D84382083A9DB000880AD2,
+				168ADD19081E484100F1A17A,
+				168ADD1A081E484100F1A17A,
+				16573CD3081A805A00085ED0,
+				16573CD2081A7F5800085ED0,
+				16573C8408198EC600085ED0,
+				16573C8308198EBF00085ED0,
+				16573C8208198C2600085ED0,
+				16573C6C081982F300085ED0,
+				16573C5C08197F8900085ED0,
+				16573C3D08197A4B00085ED0,
+				16D6D0B90816E94B00AA3663,
+				16D6D0B80816E93E00AA3663,
+				16D6CED50816BAB600AA3663,
+				16D6CDEC08166F0700AA3663,
+				16D6CDEB08166EF700AA3663,
+				16D6CCBF0816442000AA3663,
+				16D6CC8C0816415C00AA3663,
+				16D6CC5908163E8000AA3663,
+				16D6CC5A08163E8000AA3663,
+			);
+			isa = PBXGroup;
+			name = src;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CC8C0816415C00AA3663 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMDefs.h;
+			path = src/ErlXPCOMDefs.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CCBF0816442000AA3663 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMException.h;
+			path = src/ErlXPCOMException.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CDEB08166EF700AA3663 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = NSPRUtils.h;
+			path = src/NSPRUtils.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CDEC08166F0700AA3663 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = NSPRUtils.cpp;
+			path = src/NSPRUtils.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CECD0816BA7A00AA3663 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			languageSpecificationIdentifier = shell.python;
+			lastKnownFileType = text;
+			path = SConstruct;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CECE0816BA8A00AA3663 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.script.python;
+			path = custom.py;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CED50816BAB600AA3663 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = SConstruct;
+			path = src/SConstruct;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6CEF40816BC3000AA3663 = {
+			buildArgumentsString = install;
+			buildPhases = (
+			);
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = test;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+			};
+			buildToolPath = /sw/bin/scons;
+			dependencies = (
+			);
+			isa = PBXLegacyTarget;
+			name = test;
+			passBuildSettingsInEnvironment = 1;
+			productName = test;
+		};
+		16D6D0B80816E93E00AA3663 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ErlXPCOMHelper.cpp;
+			path = src/ErlXPCOMHelper.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D6D0B90816E94B00AA3663 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ErlXPCOMHelper.h;
+			path = src/ErlXPCOMHelper.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16D84382083A9DB000880AD2 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.h;
+			name = xpcom_utils.hpp;
+			path = src/xpcom_utils.hpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16E92DCE084BAED5001AF9D6 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = command_line_tokenizer.cpp;
+			path = src/command_line_tokenizer.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		16E92DCF084BAED5001AF9D6 = {
+			fileEncoding = 5;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = command_line_tokenizer.h;
+			path = src/command_line_tokenizer.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+	};
+	rootObject = 16D6CC5308163E0900AA3663;
+}

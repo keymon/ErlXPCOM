@@ -1,0 +1,39 @@
+#ifndef __LFEXCEPTION_HPP
+#define __LFEXCEPTION_HPP
+
+#include "nsString.h"
+#include "nsIException.h"
+#include "nsIServiceManager.h"
+#include "nsIExceptionService.h"
+#include "nsCOMPtr.h"
+
+
+class lfException : public nsIException
+{
+public:
+  lfException(nsresult aStatus, const nsACString & aMessage, const nsACString & aName, nsIException* aInner);
+  virtual ~lfException();
+
+  NS_DECL_ISUPPORTS
+  NS_DECL_NSIEXCEPTION
+
+  static nsresult AddException(nsresult aStatus, const nsACString & aName, const nsACString & aMessage,PRBool aClear = PR_FALSE);
+
+protected:
+  nsresult mStatus;
+  nsCString mName;
+  nsCString mMessage;
+  nsCOMPtr<nsIException> mInner;
+  nsCOMPtr<nsIStackFrame> mFrame;
+};
+
+
+#define XPINTERFACE_EXCEPTION(aStatus, aName, aMessage)  lfException::AddException(aStatus,NS_LITERAL_STRING(aName),NS_LITERAL_STRING(aMessage))
+
+#define LF_EXCEPTION_CLASSID                   \
+{ /* 32573cbc-9797-48c0-b61f-9d5ebce280cf */      \
+ 0x32573cbc, 0x9797, 0x48c0,                       \
+{0xb6, 0x1f, 0x9d, 0x5e, 0xbc, 0xe2, 0x80, 0xcf} }
+#define LF_EXCEPTION_CONTRACTID "@lfcia.org/xpinterface/exception"
+
+#endif // __LFEXCEPTION_HPP

@@ -1,0 +1,44 @@
+#ifndef _LFERLATOM_H
+#define _LFERLATOM_H
+
+#include <epi.hpp>
+
+#include "lfIErlAtom.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+
+class lfErlAtom : public lfIErlAtom
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLATOM;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    /**
+     * Construct from a string.
+     */
+    lfErlAtom(const char *aAtomValue)
+            throw (EpiBadArgument);
+
+    /**
+     * Construct from a ErlTerm
+     */
+    lfErlAtom(ErlAtom *aAtom);
+
+private:
+    virtual ~lfErlAtom();
+
+    // The internal representation of the term
+    ErlTermPtr<ErlAtom> mTerm;
+
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+
+protected:
+    /* additional members */
+};
+
+#endif

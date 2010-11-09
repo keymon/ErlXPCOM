@@ -1,0 +1,119 @@
+#include "nsISupports.idl"
+#include "lfIErlTerm.idl"
+#include "lfIErlPid.idl"
+#include "lfIErlList.idl"
+#include "lfIVariableBinding.idl"
+
+/* Native type MailBox */
+[ptr] native lfNativeMailBox(epi::node::MailBox);
+
+[scriptable, uuid(eabe3906-821e-4534-84b7-1458d0287d17)]
+
+interface lfIMailBox : nsISupports {
+
+    /**
+     * mailbox pid
+     */
+    readonly attribute lfIErlPid self;
+
+    /**
+     * Send data to a proccess
+     * @param toPid receiver Pid
+     * @param term ErlTerm to send
+     */
+    void send(in lfIErlPid toPid, in lfIErlTerm term);
+
+    /**
+     * Send data to locally registered process
+     * @param toName detination registered name
+     * @param term ErlTerm to send
+     */
+    void regSend(in string toName, in lfIErlTerm term);
+
+    /**
+     * Send data to remote registered process
+     * @param toNode remote node name
+     * @param toName detination registered name
+     * @param term ErlTerm to send
+     */
+    void remoteRegSend(in string toNode, in string toName, in lfIErlTerm term);
+
+    /**
+     * Send an RPC request to a remote Erlang node.
+     * @param node the name of the Erlang node to send rpc
+     * @param mod the name of the Erlang module containing the
+     * function to be called.
+     * @param fun the name of the function to call.
+     * @param args a list of Erlang terms, to be used as arguments
+     * to the function.
+     */
+    void sendRPC(in string node, in string mod,
+                 in string fun, in lfIErlList args);
+
+    /**
+     * Get a message from this mailbox.
+     * Block until  a message arrives.
+     * @return the ErlTerm representing
+     * the body of the next message waiting in this mailbox
+     **/
+    lfIErlTerm receive( );
+
+
+    /**
+     * Get a message from this mailbox.
+     * Block until  a message arrives for this mailbox no more than timeout ms.
+     * @param timeout the time, in milliseconds, to wait for a message
+     * before returning 0.
+     * @return the ErlTerm representing
+     * the body of the next message waiting in this mailbox, or
+     * null if timeout is reached.
+     **/
+    lfIErlTerm receiveWithTimeout( in long timeout );
+
+    /**
+     * Get a message from mailbox that matches the given pattern.
+     * It will block until an apropiate message arrives.
+     * @param pattern ErlTerm with pattern to check
+     * @param binding VariableBinding to use. It can be null.
+     * @return the ErlTerm representing the body of the next message
+     * waiting in this mailbox.
+     * @exception EpiConnectionException if there was an connection error
+     */
+    lfIErlTerm receivePattern( in lfIErlTerm pattern,
+                               in lfIVariableBinding binding  );
+
+    /**
+     * Get a message from mailbox that matches the given pattern.
+     * It will block until an apropiate message arrives.
+     * @param pattern ErlTerm with pattern to check
+     * @param binding VariableBinding to use. It can be null.
+     * @param timeout Max time in ms to wait
+     * @return the ErlTerm representing the body of the next message
+     * waiting in this mailbox.
+     * @exception EpiConnectionException if there was an connection error
+     */
+    lfIErlTerm receivePatternWithTimeout( in lfIErlTerm pattern,
+                                          in lfIVariableBinding binding,
+                                          in long timeout  );
+
+    /**
+     * Receive an RPC reply from the remote Erlang node.
+     * @param timeout The maximum time (in ms) to wait for results
+     */
+    lfIErlTerm receiveRPC( );
+
+    /**
+     * Receive an RPC reply from the remote Erlang node.
+     * @param timeout The maximum time (in ms) to wait for results
+     */
+    lfIErlTerm receiveRPCWithTimeout( in long timeout);
+
+    /**
+     * Returns the native EPI representation
+     * (MailBox *) of this mailbox.
+     */
+    [noscript] lfNativeMailBox getNative();
+
+};
+
+

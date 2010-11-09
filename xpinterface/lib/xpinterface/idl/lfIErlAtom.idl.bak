@@ -1,0 +1,12 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(70544387-14c9-4ee2-913f-45497eb5e90b)]
+
+interface lfIErlAtom : lfIErlTerm
+{
+	 /** 
+	  * Atom value
+	  */
+	 readonly attribute string value;
+
+};

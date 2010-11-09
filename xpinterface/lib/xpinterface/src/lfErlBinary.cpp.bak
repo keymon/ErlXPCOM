@@ -1,0 +1,48 @@
+#include "lfErlBinary.hpp"
+#include "lfErlTerm.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlBinary, lfIErlTerm, lfIErlBinary);
+
+lfErlBinary::lfErlBinary(const PRUint8 *data, const PRUint32 size)
+{
+    mTerm = new ErlBinary(data, size, true, true);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlBinary::lfErlBinary(ErlBinary *aBinary)
+{
+    mTerm = aBinary;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlBinary::~lfErlBinary()
+{
+}
+
+/* readonly attribute unsigned long size; */
+NS_IMETHODIMP lfErlBinary::GetSize(PRUint32 *aSize)
+{
+    try {
+        XPCOM_VALUE_RETURN(mTerm->size(), aSize);
+    } catch (EpiInvalidTerm* e) {
+        delete e;
+        return NS_ERROR_NOT_INITIALIZED;
+    }
+}
+
+/* octet elementAt (in unsigned long position); */
+NS_IMETHODIMP lfErlBinary::ElementAt(PRUint32 position, PRUint8 *_retval)
+{
+    if (position >= mTerm->size()) {
+        try {
+            XPCOM_VALUE_RETURN(((PRUint8 *)mTerm->binaryData())[position], _retval);
+        } catch (EpiInvalidTerm* e) {
+            delete e;
+            return NS_ERROR_NOT_INITIALIZED;
+        }
+    } else {
+        return NS_ERROR_INVALID_ARG;
+    }
+
+}
+

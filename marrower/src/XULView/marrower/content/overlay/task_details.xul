@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE window [
+<!ENTITY main.userInfo						"Info">
+<!ENTITY main.userEdit						"Editar">
+<!ENTITY main.userPanel.head.user			"Usuarios">
+<!ENTITY main.task-viewall                  "Ver todas">
+<!ENTITY main.task-edit						"Editar">
+<!ENTITY main.user-chat						"Conversacion">
+<!ENTITY main.add							"Añadir">
+<!ENTITY main.remove						"Borrar">
+<!ENTITY main.connect						"Conectar">
+
+<!ENTITY user.details           "Información do usuario">
+<!ENTITY user.login				"Conta">
+<!ENTITY user.alias				"Apodo">
+<!ENTITY user.firstname         "Nome">
+<!ENTITY user.lastname          "Apelidos">
+<!ENTITY user.email				"Email">
+<!ENTITY user.address           "Dirección">
+<!ENTITY user.birthdate         "Cumpreanos">
+
+<!ENTITY task.name				"Nome de tarefa">
+<!ENTITY task.description		"Descripción">
+<!ENTITY task.duration			"Duración">
+<!ENTITY task.completion		"Progreso">
+<!ENTITY task.state				"Estado">
+<!ENTITY task.priority			"Prioridad">
+<!ENTITY task.assigned-to		"Asignado a...">
+<!ENTITY task.details           "Detalles da tarefa">
+<!ENTITY task.predepends		"Predecesoras">
+<!ENTITY task.postdepends		"Sudecesoras">
+
+<!ENTITY task.state.completed	"Completado">
+<!ENTITY task.state.inprogress	"En progreso">
+<!ENTITY task.state.stoped		"Detido">
+<!ENTITY task.state.canceled	"Cancelado">
+
+<!ENTITY task.priority.high		"Alta">
+<!ENTITY task.priority.medium	"Normal">
+<!ENTITY task.priority.low		"Baixa">
+
+]>
+
+<overlay id="task-panel_overlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<groupbox id="task-details" orientation="horizontal">
+	<caption label="&task.details;"/>
+	<hbox flex="1">
+	<vbox flex="1">
+		<label value="&task.predepends;"/>
+		<listbox id="main-predepends" flex="1" context="add-menu"/>
+	</vbox>
+	<vbox flex="1">
+		<label value="&task.postdepends;"/>
+		<listbox id="main-postdepends"  flex="1" context="add-menu"/>
+	</vbox>
+	<vbox flex="1">
+		<label value="&task.assigned-to;"/>
+		<listbox id="main-assigned-to" flex="1" context="add-menu"/>
+	</vbox>
+	</hbox>
+</groupbox>
+</overlay>

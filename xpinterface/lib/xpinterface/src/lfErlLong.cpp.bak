@@ -1,0 +1,26 @@
+#include "lfErlLong.hpp"
+#include "lfErlTerm.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlLong, lfIErlTerm, lfIErlLong);
+
+lfErlLong::lfErlLong(PRInt64 value)
+{
+    mTerm = new ErlLong(value);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlLong::lfErlLong(ErlLong *aLong)
+{
+    mTerm = aLong;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlLong::~lfErlLong()
+{
+}
+
+/* readonly attribute long long value; */
+NS_IMETHODIMP lfErlLong::GetValue(PRInt64 *aValue)
+{
+    XPCOM_VALUE_RETURN(mTerm->longValue(), aValue);
+}

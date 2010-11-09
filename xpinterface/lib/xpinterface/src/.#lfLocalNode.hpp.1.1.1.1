@@ -1,0 +1,33 @@
+#ifndef _LFLOCALNODE_H
+#define _LFLOCALNODE_H
+
+#include <epi.hpp>
+
+using namespace epi::node;
+
+#include "lfILocalNode.h"
+#include "lfAbstractNode.hpp"
+
+// forward reference
+class lfNode;
+
+/** Implementation class for LocalNode */
+class lfLocalNode
+{
+    friend class lfNode;
+public:
+    NS_DECL_LFILOCALNODE;
+
+    // Forward implementation of lfIAbstractNode functions
+    NS_FORWARD_LFIABSTRACTNODE(mAbstractNodeImpl.);
+
+private:
+    LocalNode *mNode;
+    lfAbstractNode mAbstractNodeImpl;
+
+protected:
+    lfLocalNode(LocalNode *node);
+    virtual ~lfLocalNode();
+};
+
+#endif

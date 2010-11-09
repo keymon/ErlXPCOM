@@ -1,0 +1,40 @@
+#ifndef _LFERLCONSLIST_H
+#define _LFERLCONSLIST_H
+
+#include <epi.hpp>
+
+#include "lfIErlConsList.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+
+class lfErlConsList : public lfIErlConsList
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLLIST;
+    NS_DECL_LFIERLCONSLIST;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    lfErlConsList();
+    lfErlConsList(PRUint32 size, lfIErlTerm **terms)
+            throw(EpiBadArgument*);
+    lfErlConsList(ErlConsList* aList);
+
+private:
+    virtual ~lfErlConsList();
+
+protected:
+    /* additional members */
+
+    // The internal representation of the term
+    ErlTermPtr<ErlConsList> mTerm;
+
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+
+};
+
+#endif

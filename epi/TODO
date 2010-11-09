@@ -1,0 +1,60 @@
+TODO
+~~~~
+
+ - Create a new Guard: multiplePatternGuard.
+
+ - Crear unha factoria de Transport, baseada no nome do nodo 
+		 (ei:nodo@host, port:nodo@host)
+		
+ - Allow to ErlConsList to be Empty list, and automacly close with empty list tail.z
+ 
+ - Link remote/local process
+   - Send EXIT signals
+   - Receive and catch EXIT signals
+	
+ - Revise the MailBoxGuard and QueueGuard, to allow throw exceptions. 
+	 Actually the QueueGuard does not have support to throw exceptions
+	 and MailBoxGuard's check method simply ignores them.
+
+ - In LocalNode: get the cookie from ~/.cookie and localhost variable
+
+ - Add Port and Driver port support 
+ 
+ - Organize public headers. Allow instalation of the library and headers.
+ 
+ - Reduce library size. suggestions?
+ 
+ - Add STL support, providing iterators, operators, streams, etc... for terms
+	and buffers.
+
+ - Add support for bignums (integers > 64bits)
+ 
+ - Make the library reentrant. 
+ 	Actually the concurrence problems are:
+		- ErlTerm iitialization. That's is not a problem, just init the 
+			terms in the same thread. 
+		- Change the cookie in nodes and transports. 
+		- Use of the EI library and the erlerrno global variable
+			FIXED: EI seems to be thread safe
+
+ - Manage errors of RPC calls
+ 
+ - Review the ErlLong term, to allow unsigned integers.
+ 
+ - Port the library to other plataforms.
+ 
+ - Create a stream to easy construction of terms, something like:
+ 		
+		ErlTermFormarter formarter;
+		formarter << "{123, " << new ErlString("hello");
+		formarter << ", an_atom, \"string\", [1,2|3]} ";
+		ErlTermPtr<> t(formarter.buildTerm());
+
+ - Remove unuseful debug messages. Remove the use of CWD library.
+ 
+ - Correct the configure.ac. 
+ 
+ - Correct my awful english in the documentation
+ 
+ - Write a tutorial
+  

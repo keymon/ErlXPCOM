@@ -1,0 +1,22 @@
+#include "lfXPInterfaceHelper.hpp"
+#include "lfErlAtom.hpp"
+#include "nsIGenericFactory.h"
+
+/** Component load code */
+
+// Create the constructor
+NS_GENERIC_FACTORY_CONSTRUCTOR(lfXPInterfaceHelper);
+
+// List of components in this module
+static const nsModuleComponentInfo components[] =
+{
+    { "lfXPInterfaceHelper: Helper service for XPInterface use",
+    LFIXPINTERFACEHELPER_IID,
+    "@lfcia.org/xpinterface/lfXPInterfaceHelper;1",
+    lfXPInterfaceHelperConstructor
+    }
+};
+
+NS_IMPL_NSGETMODULE(lfXPInterfaceModule, components);
+
+

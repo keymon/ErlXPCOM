@@ -1,0 +1,15 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(1509c80e-7234-4952-ae12-28cfdb5c80f9)]
+
+interface lfIErlPort: lfIErlTerm
+{
+    /** the node name from the Port. */
+    readonly attribute string node;
+
+    /** the id number from the Port. */
+    readonly attribute unsigned long id;
+
+    /** the creation number from the Port. */
+    readonly attribute unsigned long creation;
+};

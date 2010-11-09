@@ -1,0 +1,35 @@
+#include "lfErlEmptyList.hpp"
+#include "lfErlTerm.hpp"
+#include "lfIXPInterfaceError.h"
+
+NS_IMPL_ISUPPORTS3(lfErlEmptyList, lfIErlTerm, lfIErlList, lfIErlEmptyList);
+
+lfErlEmptyList::lfErlEmptyList()
+{
+    mTerm = new ErlEmptyList();
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlEmptyList::~lfErlEmptyList()
+{
+}
+
+/* readonly attribute unsigned long arity; */
+NS_IMETHODIMP lfErlEmptyList::GetArity(PRUint32 *aArity)
+{
+    XPCOM_VALUE_RETURN(0, aArity);
+    return NS_OK;
+}
+
+/* lfIErlTerm elementAt (in unsigned long position); */
+NS_IMETHODIMP lfErlEmptyList::ElementAt(PRUint32 position, lfIErlTerm **_retval)
+{
+    return NS_ERROR_XPINTERFACE_EMPTYLIST;
+}
+
+/* lfIErlTerm tail (in unsigned long position); */
+NS_IMETHODIMP lfErlEmptyList::Tail(PRUint32 position, lfIErlTerm **_retval)
+{
+    return NS_ERROR_XPINTERFACE_EMPTYLIST;
+}
+

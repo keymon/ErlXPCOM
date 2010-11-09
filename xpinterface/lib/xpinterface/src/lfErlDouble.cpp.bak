@@ -1,0 +1,27 @@
+#include "lfErlDouble.hpp"
+#include "lfErlTerm.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlDouble, lfIErlTerm, lfIErlDouble);
+
+lfErlDouble::lfErlDouble(double value)
+{
+    mTerm = new ErlDouble(value);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlDouble::lfErlDouble(ErlDouble *aDouble)
+{
+    mTerm = aDouble;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlDouble::~lfErlDouble()
+{
+}
+
+/* readonly attribute double value; */
+NS_IMETHODIMP lfErlDouble::GetValue(double *aValue)
+{
+    XPCOM_VALUE_RETURN(mTerm->doubleValue(), aValue);
+}
+

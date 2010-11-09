@@ -1,0 +1,40 @@
+#include "nsISupports.idl"
+
+[scriptable, uuid(431bf008-1bb5-402a-88ab-b2fd63515d5e)]
+
+interface lfIXPInterfaceError : nsISupports
+{
+    const long MODULE_XPINTERFACE = 40;
+    const long SUCCESS = 0x00;
+    const long EMPTYLIST_ERROR = 0x01;
+    const long CONNECTION_ERROR = 0x02;
+    const long NETWORK_ERROR = 0x03;
+    const long DECODE_ERROR = 0x04;
+    const long ENCODE_ERROR = 0x05;
+
+
+};
+
+/*
+ * Map these errors codes into the nsresult namespace in C++
+ */
+%{C++
+#define NS_ERROR_MODULE_XPINTERFACE lfIXPInterfaceError::MODULE_XPINTERFACE
+
+#define NS_ERROR_XPINTERFACE_EMPTYLIST \
+    NS_ERROR_GENERATE_FAILURE(NS_ERROR_MODULE_XPINTERFACE, \
+                              lfIXPInterfaceError::EMPTYLIST_ERROR)
+#define NS_ERROR_XPINTERFACE_CONNECTION \
+    NS_ERROR_GENERATE_FAILURE(NS_ERROR_MODULE_XPINTERFACE, \
+                              lfIXPInterfaceError::CONNECTION_ERROR)
+#define NS_ERROR_XPINTERFACE_NETWORK \
+    NS_ERROR_GENERATE_FAILURE(NS_ERROR_MODULE_XPINTERFACE, \
+                              lfIXPInterfaceError::NETWORK_ERROR)
+#define NS_ERROR_XPINTERFACE_DECODE \
+    NS_ERROR_GENERATE_FAILURE(NS_ERROR_MODULE_XPINTERFACE, \
+                              lfIXPInterfaceError::DECODE_ERROR)
+#define NS_ERROR_XPINTERFACE_ENCODE \
+    NS_ERROR_GENERATE_FAILURE(NS_ERROR_MODULE_XPINTERFACE, \
+                              lfIXPInterfaceError::ENCODE_ERROR)
+
+%}

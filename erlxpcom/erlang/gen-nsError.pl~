@@ -1,0 +1,162 @@
+  1 #! /usr/bin/env perl
+  2 # ***** BEGIN LICENSE BLOCK *****
+  3 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
+  4 #
+  5 # The contents of this file are subject to the Mozilla Public License Version
+  6 # 1.1 (the "License"); you may not use this file except in compliance with
+  7 # the License. You may obtain a copy of the License at
+  8 # http://www.mozilla.org/MPL/
+  9 #
+ 10 # Software distributed under the License is distributed on an "AS IS" basis,
+ 11 # WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ 12 # for the specific language governing rights and limitations under the
+ 13 # License.
+ 14 #
+ 15 # The Original Code is Java XPCOM Bindings.
+ 16 #
+ 17 # The Initial Developer of the Original Code is
+ 18 # Michal Ceresna.
+ 19 # Portions created by the Initial Developer are Copyright (C) 2005
+ 20 # the Initial Developer. All Rights Reserved.
+ 21 #
+ 22 # Contributor(s):
+ 23 #   Michal Ceresna (ceresna@dbai.tuwien.ac.at)
+ 24 #   Javier Pedemonte (jhpedemonte@gmail.com)
+ 25 #
+ 26 # Alternatively, the contents of this file may be used under the terms of
+ 27 # either the GNU General Public License Version 2 or later (the "GPL"), or
+ 28 # the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
+ 29 # in which case the provisions of the GPL or the LGPL are applicable instead
+ 30 # of those above. If you wish to allow use of your version of this file only
+ 31 # under the terms of either the GPL or the LGPL, and not to allow others to
+ 32 # use your version of this file under the terms of the MPL, indicate your
+ 33 # decision by deleting the provisions above and replace them with the notice
+ 34 # and other provisions required by the GPL or the LGPL. If you do not delete
+ 35 # the provisions above, a recipient may use your version of this file under
+ 36 # the terms of any one of the MPL, the GPL or the LGPL.
+ 37 #
+ 38 # ***** END LICENSE BLOCK *****
+ 39 
+ 40 # Generates XPCOMError.java from xpcom/base/nsError.h
+ 41 #
+ 42 # usage: perl gen-nsErrors.pl < <topsrcdir>/xpcom/base/nsError.h > XPCOMError.java
+ 43 
+ 44 
+ 45 print "/* ***** BEGIN LICENSE BLOCK *****\n";
+ 46 print " * Version: MPL 1.1/GPL 2.0/LGPL 2.1\n";
+ 47 print " *\n";
+ 48 print " * The contents of this file are subject to the Mozilla Public License Version\n";
+ 49 print " * 1.1 (the \"License\"); you may not use this file except in compliance with\n";
+ 50 print " * the License. You may obtain a copy of the License at\n";
+ 51 print " * http://www.mozilla.org/MPL/\n";
+ 52 print " *\n";
+ 53 print " * Software distributed under the License is distributed on an \"AS IS\" basis,\n";
+ 54 print " * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License\n";
+ 55 print " * for the specific language governing rights and limitations under the\n";
+ 56 print " * License.\n";
+ 57 print " *\n";
+ 58 print " * The Original Code is mozilla.org code.\n";
+ 59 print " *\n";
+ 60 print " * The Initial Developer of the Original Code is\n";
+ 61 print " * Netscape Communications Corporation.\n";
+ 62 print " * Portions created by the Initial Developer are Copyright (C) 1998\n";
+ 63 print " * the Initial Developer. All Rights Reserved.\n";
+ 64 print " *\n";
+ 65 print " * Contributor(s):\n";
+ 66 print " *\n";
+ 67 print " * Alternatively, the contents of this file may be used under the terms of\n";
+ 68 print " * either of the GNU General Public License Version 2 or later (the \"GPL\"),\n";
+ 69 print " * or the GNU Lesser General Public License Version 2.1 or later (the \"LGPL\"),\n";
+ 70 print " * in which case the provisions of the GPL or the LGPL are applicable instead\n";
+ 71 print " * of those above. If you wish to allow use of your version of this file only\n";
+ 72 print " * under the terms of either the GPL or the LGPL, and not to allow others to\n";
+ 73 print " * use your version of this file under the terms of the MPL, indicate your\n";
+ 74 print " * decision by deleting the provisions above and replace them with the notice\n";
+ 75 print " * and other provisions required by the GPL or the LGPL. If you do not delete\n";
+ 76 print " * the provisions above, a recipient may use your version of this file under\n";
+ 77 print " * the terms of any one of the MPL, the GPL or the LGPL.\n";
+ 78 print " *\n";
+ 79 print " * ***** END LICENSE BLOCK ***** */\n";
+ 80 
+ 81 print "\n";
+ 82 print "package org.mozilla.xpcom;\n";
+ 83 print "\n\n";
+ 84 
+ 85 print "/**\n";
+ 86 print " * Mozilla error codes.\n";
+ 87 print " *\n";
+ 88 print " * THIS FILE GENERATED FROM mozilla/xpcom/base/nsError.h.\n";
+ 89 print " * PLEASE SEE THAT FILE FOR FULL DOCUMENTATION.\n";
+ 90 print " */\n";
+ 91 print "public interface XPCOMError {\n";
+ 92 
+ 93 while (<STDIN>) {
+ 94   $line = $_;
+ 95 
+ 96   if ($prevline) {
+ 97     $_ = $prevline.$_;
+ 98   }
+ 99   if (/(.*)\\$/) {
+100     #splitted line
+101     $prevline = $1;
+102     next;
+103   }
+104   $prevline = "";
+105 
+106   if (/^\s*#define\s+(NS_[A-Z_]+)\s+(0x)?([0-9a-fA-F]+)\s*$/) {
+107     #define NS_ERROR_MODULE_XPCOM      1
+108     #define NS_ERROR_MODULE_BASE_OFFSET 0x45
+109     print "  public static final long $1 = $2$3L;\n";
+110   }
+111   elsif (/^\s*#define\s+(NS_[A-Z_]+)\s+\((NS_[A-Z_]+)\s+\+\s+(0x)?([0-9a-fA-F]+)\s*\)\s*/) {
+112     #define NS_ERROR_NOT_INITIALIZED           (NS_ERROR_BASE + 1)
+113     #define NS_ERROR_FACTORY_EXISTS            (NS_ERROR_BASE + 0x100)
+114     print "  public static final long $1 = $2 + $3$4L;\n";
+115   }
+116   elsif (/^\s*#define\s+(NS_[A-Z_]+)\s+(NS_[A-Z_]+)\s\s*/) {
+117     #define NS_ERROR_NO_INTERFACE              NS_NOINTERFACE
+118     print "  public static final long $1 = $2;\n";
+119   }
+120   elsif (/^\s*#define\s+(NS_[A-Z_]+)\s+\(\(nsresult\)\s*(0x)?([0-9a-fA-F]+)L?\)\s*$/) { 
+121     #define NS_ERROR_BASE                      ((nsresult) 0xC1F30000)
+122     #define NS_ERROR_ABORT                     ((nsresult) 0x80004004L)
+123     print "  public static final long $1 = $2$3L;\n";
+124   }
+125   elsif (/^\s*#define\s+(NS_[A-Z_]+)\s+NS_ERROR_GENERATE_FAILURE\s*\(\s*(NS_[A-Z_]+)\s*,\s*([0-9]+)\s*\)\s*$/) { 
+126     #define NS_BASE_STREAM_CLOSED         NS_ERROR_GENERATE_FAILURE(NS_ERROR_MODULE_BASE, 2)
+127     $module = $2;
+128     $code = $3;
+129     print "  public static final long $1 = ((NS_ERROR_SEVERITY_ERROR<<31) | (($module+NS_ERROR_MODULE_BASE_OFFSET)<<16) | $code);\n";
+130   }
+131   elsif (/^\s*#define\s+(NS_[A-Z_]+)\s+NS_ERROR_GENERATE_SUCCESS\s*\(\s*(NS_[A-Z_]+)\s*,\s*([0-9]+)\s*\)\s*$/) { 
+132     #define NS_SUCCESS_LOSS_OF_INSIGNIFICANT_DATA   NS_ERROR_GENERATE_SUCCESS(NS_ERROR_MODULE_XPCOM,  1)
+133     $module = $2;
+134     $code = $3;
+135     print "  public static final long $1 = ((NS_ERROR_SEVERITY_SUCCESS<<31) | (($module+NS_ERROR_MODULE_BASE_OFFSET)<<16) | $code);\n";
+136   }
+137   elsif (/^\s*\/\*(.*)\*\/\s*$/ && !/^\s*\/\*@[\{\}]\*\/\s*$/ &&
+138          !/^\s*\/\*\ -\*- Mode:/) {
+139     #single line comment, but not 
+140     #/*@{*/, /*@}*/, 
+141     #/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+142     print "  /*$1*/\n";
+143   }
+144   elsif (/^\s*$/) {
+145     #empty line, but write only the first
+146     #line from a sequence of empty lines
+147     if (!$wasEmpty) {
+148       print "\n";
+149     }
+150     $wasEmpty = 1;
+151     next;
+152   }
+153   else {
+154     next;
+155   }
+156 
+157   $wasEmpty = 0;
+158 }
+159 
+160 print "}\n";
+161 
+

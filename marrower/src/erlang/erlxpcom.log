@@ -1,0 +1,82 @@
+[ErlXPCOM] 18:54:48.421 - erlxpcom_orb(erlang/erlxpcom_orb.erl:61):
+  Starting ErlXPCOM ORB
+[ErlXPCOM] 18:54:48.430 - object_proxy(erlang/object_proxy.erl:33):
+  Created xpcom object proxy. pid=<0.46.0> oid=0
+[ErlXPCOM] 18:54:48.432 - xpcom_object(erlang/xpcom_object.erl:129):
+  xpcom:create(object_proxy, [0,<0.45.0>,<0.43.0>]) -> {ok,{xpcom_object,
+                                                               <0.46.0>}}
+[ErlXPCOM] 18:54:48.433 - object_proxy(erlang/object_proxy.erl:33):
+  Created xpcom object proxy. pid=<0.47.0> oid=1
+[ErlXPCOM] 18:54:48.433 - xpcom_object(erlang/xpcom_object.erl:129):
+  xpcom:create(object_proxy, [1,<0.45.0>,<0.43.0>]) -> {ok,{xpcom_object,
+                                                               <0.47.0>}}
+[ErlXPCOM] 18:54:48.433 - erlxpcom_orb(erlang/erlxpcom_orb.erl:79):
+  Registering component loader
+[XPCOM Object] 18:54:48.434 - xpcom_object(erlang/xpcom_object.erl:412):
+  <0.46.0>. xpcom_object:addref() -> 1
+[XPCOM Object] 18:54:48.434 - xpcom_object(erlang/xpcom_object.erl:412):
+  <0.47.0>. xpcom_object:addref() -> 1
+[ErlXPCOM] 18:54:48.454 - xpcom_object(erlang/xpcom_object.erl:129):
+  xpcom:create(ns_generic_module, {ns_module_info,
+                                      "0.0.1",
+                                      "ErlXPCOM: The Erlang XPCOM binding",
+                                      [{ns_module_component_info,
+                                           "Erlang component loader",
+                                           "9fab2034-002c-4e8f-bf2c-f81e77072e42",
+                                           "@lfcia.org/erlang/componentloader;1",
+                                           #Fun<component_loader.0.118818834>,
+                                           #Fun<component_loader.1.100115256>,
+                                           #Fun<component_loader.2.111734413>}],
+                                      none,
+                                      #Fun<component_loader.3.121643229>}) -> {ok,{xpcom_object,
+                                                                                      <0.48.0>}}
+[XPCOM Object] 18:54:48.454 - xpcom_object(erlang/xpcom_object.erl:412):
+  <0.48.0>. xpcom_object:addref() -> 1
+[XPCOM Object] 18:54:48.454 - xpcom_object(erlang/xpcom_object.erl:412):
+  <0.48.0>. xpcom_object:addref() -> 2
+[ErlXPCOM] 18:54:48.454 - erlxpcom_orb(erlang/erlxpcom_orb.erl:91):
+  Orb started
+[XPCOM Object] 18:54:48.454 - xpcom_object(erlang/xpcom_object.erl:422):
+  <0.48.0>. xpcom_object:release() -> 1
+[ErlXPCOM] 18:57:02.890 - erlxpcom_orb(erlang/erlxpcom_orb.erl:61):
+  Starting ErlXPCOM ORB
+[ErlXPCOM] 18:57:02.898 - object_proxy(erlang/object_proxy.erl:33):
+  Created xpcom object proxy. pid=<0.46.0> oid=0
+[ErlXPCOM] 18:57:02.898 - xpcom_object(erlang/xpcom_object.erl:129):
+  xpcom:create(object_proxy, [0,<0.45.0>,<0.43.0>]) -> {ok,{xpcom_object,
+                                                               <0.46.0>}}
+[ErlXPCOM] 18:57:02.899 - object_proxy(erlang/object_proxy.erl:33):
+  Created xpcom object proxy. pid=<0.47.0> oid=1
+[ErlXPCOM] 18:57:02.900 - xpcom_object(erlang/xpcom_object.erl:129):
+  xpcom:create(object_proxy, [1,<0.45.0>,<0.43.0>]) -> {ok,{xpcom_object,
+                                                               <0.47.0>}}
+[ErlXPCOM] 18:57:02.900 - erlxpcom_orb(erlang/erlxpcom_orb.erl:79):
+  Registering component loader
+[XPCOM Object] 18:57:02.900 - xpcom_object(erlang/xpcom_object.erl:412):
+  <0.46.0>. xpcom_object:addref() -> 1
+[XPCOM Object] 18:57:02.900 - xpcom_object(erlang/xpcom_object.erl:412):
+  <0.47.0>. xpcom_object:addref() -> 1
+[ErlXPCOM] 18:57:02.967 - xpcom_object(erlang/xpcom_object.erl:129):
+  xpcom:create(ns_generic_module, {ns_module_info,
+                                      "0.0.1",
+                                      "ErlXPCOM: The Erlang XPCOM binding",
+                                      [{ns_module_component_info,
+                                           "Erlang component loader",
+                                           "9fab2034-002c-4e8f-bf2c-f81e77072e42",
+                                           "@lfcia.org/erlang/componentloader;1",
+                                           #Fun<component_loader.0.118818834>,
+                                           #Fun<component_loader.1.100115256>,
+                                           #Fun<component_loader.2.111734413>}],
+                                      none,
+                                      #Fun<component_loader.3.121643229>}) -> {ok,{xpcom_object,
+                                                                                      <0.48.0>}}
+[XPCOM Object] 18:57:02.967 - xpcom_object(erlang/xpcom_object.erl:412):
+  <0.48.0>. xpcom_object:addref() -> 1
+[XPCOM Object] 18:57:02.968 - xpcom_object(erlang/xpcom_object.erl:412):
+  <0.48.0>. xpcom_object:addref() -> 2
+[ErlXPCOM] 18:57:02.968 - erlxpcom_orb(erlang/erlxpcom_orb.erl:91):
+  Orb started
+[XPCOM Object] 18:57:02.970 - xpcom_object(erlang/xpcom_object.erl:422):
+  <0.48.0>. xpcom_object:release() -> 1
+[ErlXPCOM] 19:00:17.101 - erlxpcom_orb(erlang/erlxpcom_orb.erl:61):
+  Starting ErlXPCOM ORB

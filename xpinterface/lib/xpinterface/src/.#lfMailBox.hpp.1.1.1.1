@@ -1,0 +1,26 @@
+#ifndef _LFMAILBOX_H
+#define _LFMAILBOX_H
+
+#include <epi.hpp>
+#include "lfIMailBox.h"
+
+using namespace epi::node;
+
+class lfMailBox : public lfIMailBox
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIMAILBOX;
+
+    lfMailBox(MailBox *mailbox);
+
+private:
+    virtual ~lfMailBox();
+
+    MailBox *mMailBox;
+
+protected:
+  /* additional members */
+};
+
+#endif

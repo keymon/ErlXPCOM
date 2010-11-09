@@ -1,0 +1,23 @@
+#include "nsISupports.idl"
+#include "nsIEnumerator.idl"
+
+/**
+ * Definición do interfaz lfIUserVO.
+ * Almacena a información do estado do usuario
+ */
+[scriptable, uuid(3c6f4ac1-79db-4196-b9b6-45723ff8c20e)]
+interface lfIUserVO : nsISupports 
+{
+	const short ONLINE = 0;
+	const short OFFLINE = 1;
+
+	readonly attribute short state;
+	readonly attribute string login;
+	readonly attribute string alias;
+	readonly attribute string firstname;
+	readonly attribute string lastname;
+	readonly attribute string email;
+	readonly attribute string birthdate;
+	
+};
+	

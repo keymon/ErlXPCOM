@@ -1,0 +1,41 @@
+/**
+ * This file defines some useful macros for XPCOM use.
+ */
+#ifndef _XPCOM_UTILS_H
+#define _XPCOM_UTILS_H
+
+#include "nsMemory.h"
+
+/**
+ * Clone an string to be returned by an out parameter using the nsMemory
+ * class (see http://www.mozilla.org/scriptable/faq.html#i9).
+ * _from must be a (const char *)
+ * _retval must be a (char **)
+ */
+#define XPCOM_STRING_CLONE(_from, _retval) \
+    *_retval = (char*) nsMemory::Clone((_from), \
+ 	    sizeof(char)*(strlen(_from)+1))
+
+/**
+ * Implements a method that returns a string. this clones the string
+ * using nsMemory, and checking for erros returning the appropiated value
+ * _from must be a (const char *)
+ * _retval must be a (char **)
+ */
+#define XPCOM_STRING_RETURN(_from, _retval) \
+	 if(!_retval) return NS_ERROR_NULL_POINTER;\
+        XPCOM_STRING_CLONE(_from, _retval);\
+	 return *_retval ? NS_OK : NS_ERROR_OUT_OF_MEMORY
+
+/**
+ * Implements a method that returns an simple type (int, float, etc...)
+ * checking for erros and returning the appropiated value
+ * _from must be a (simple_type)
+ * _retval must be a (simple_type *)
+ */
+#define XPCOM_VALUE_RETURN(_from, _retval) \
+	 if(!_retval) return NS_ERROR_NULL_POINTER;\
+    *_retval=_from;\
+	 return NS_OK
+
+#endif

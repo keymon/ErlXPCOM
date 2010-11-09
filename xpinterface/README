@@ -1,0 +1,233 @@
+.-------------.
+| XPInterface |
+\_.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@
+
+XPInterface allows the comunication between the Mozilla platform and the
+Erlang platform.
+
+XPInterface is a XPCOM component that allows implement erlang C-nodes and 
+send and receive of Erlang messages to remote Erlang nodes from Mozilla. It 
+defines a set of scriptable XPIDL interfaces making the Erlang-Javascript 
+communication using erlang terms easy.
+
+XPInterface is built over EPI library (http://epi.sourceforge.net), simply 
+mapping a subset of EPI API. The behaivour is the same.
+
+NOTE: XPInterface annd EPI are alpha versions and are probably full of bugs. 
+
+You can get them from EPI sourceforge website, http://epi.sourceforge.net.
+
+.--------------.
+| Requirements |
+\_.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@
+
+In order to build XPInterface you need the following software:
+
+	- Scons (www.scons.org) 
+	- g++ (tested with version 3.3)
+	- xpidl, the XPIDL compiler. Is distributed with libxpidl library, 
+		Mozilla source code, and the Gecko SDK
+
+You need the EPI library:
+	- http://epi.sourceforge.net
+	
+You need the Mozilla idls and headers files. You have different options:
+
+	1.- Download and install Gecko SDK. It changes constatly, so I will point
+		the wiki page:
+			- http://wiki.mozilla.org/Gecko:SDK
+	2.- Download and build the Mozilla tree. It's the sure way to do it :)
+			- http://www.mozilla.org/source.html
+
+
+.------------------------.
+| Configure and Building |
+\_.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@
+
+First configure XPInterface creating the file custom.py with the 
+following content:
+
+-- 8< ------ 8< ------ 8< ------ 8< ------ 8< ------ 8< --
+# EPI Library path
+EPI_INC='/path/to/epi/include/' 
+EPI_LIB='/path/to/epi/lib/'
+# EI Library path
+EI_INC='/path/to/erl_interface/include/' 
+EI_LIB='/path/to/erl_interface/lib/'
+# Openthreads path
+OPENTHREADS_INC='/path/to/openthreads/include/'
+OPENTHREADS_LIB='/path/to/openthreads/lib' 
+# Libcwd path
+LIBCWD_INC = '/path/to/libcwd/inc'
+LIBCWD_LIB = '/path/to/libcwd/inc'
+
+# Mozilla dist directory, this is the result directory of mozilla build. 
+# This directory must contain:
+#   bin/ and lib/: all the Mozilla programs and libraries, including the xpidl
+#   idl/: all the mozilla idl files
+#   include/: mozilla includes
+#
+# If you use the Gecko SDK, or other source tree, or the "planets are in arrow"
+# the paths can differ. You have to edit the SConstruct file and correct the
+# paths  
+MOZILLA_DIST = '/Users/keymon/Proxecto/mozilla/dist/'
+
+# debug build y/n
+debug = 1 
+
+# Uncomment this line to build in MacOSX. I'm new in Mac, I don't known why this
+# is necesary :-?
+#EXTRA_LINK_FLAGS="/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation "
+
+-- 8< ------ 8< ------ 8< ------ 8< ------ 8< ------ 8< --
+
+if any path is unnecesary (libraries are installed), you can not set this 
+variables or set them to 0.
+
+Once configured, simply execute:
+
+$ scons 
+
+.------------.
+| Installing |
+\_.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@
+
+XPInterface is configured to be installed in $MOZILLA_DIST/bin/components 
+directory, executing:
+
+$ scons install
+
+If you want to install it in a different mozilla distribution, copy the
+.xpt files and the component binary:
+
+$ cp lib/xpinterface/idl/*.xpt $OTHER_MOZILLA/components
+$ cp lib/xpinterface/idl/*.xpt $OTHER_MOZILLA/components
+
+Component will be registered next time you launch Mozilla. You can force
+the registration using regxpcom program in mozilla binary directory:
+
+$ cd $MOZILLA_DIST/bin
+$ ./run-mozilla ./regxpcom -a
+ 
+.---------------.
+| Documentation |
+\_.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@
+
+All the XPIDL interfaces are documented with javadoc comments, but I did 
+not found any tool to generate prety documentation. I suggest consulte 
+the *.idl files in ./lib/xpinterface/idl.
+
+XPInterface is a mapping to EPI library (http://epi.sourceforge.net) and
+the behaivour is the same. Reference the EPI documentation.
+
+.----------------------------------------------------------.
+| Bugs, comments, language corrections and other feedback: |
+\_.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@
+
+You can send them all to keymon@gmail.com. Feedback is really appreciated. 
+
+I'm specially insterested in C++ and XPCOM coding suggestions (This is my first 
+C++ project... And is really hard to code with XPCOM for a novice :-D). 
+
+Language corrections in documentation are also appreciated, and everyone 
+can colaborate.
+
+Bugs, of cuorse, are also wellcome. Please, if possible, send bugs with a 
+description of the crash and a sample code that makes it crash. 
+You can notify bugs in http://www.sourceforge.net/epi
+
+.---------.
+| Contact |
+\_.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@
+
+I can be contacted at: keymon@gmail.com
+
+.--------------.
+| Example Code |
+\_.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@
+
+Sends a message to a remote erlang node with a reply server like 
+
+--- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< ---
+-module(reply_server).
+-export([start/0, loop/0]).
+
+start() ->
+    Pid=spawn(reply_server, loop, []),
+    register(reply_server, Pid),
+    Pid.
+
+loop() ->
+     receive
+     {Pid, Msg} ->
+        io:format("Received: ~w from ~w~n", [Msg, Pid]),
+        Pid!Msg;
+     X ->
+        io:format("Received: ~w~n", [X])
+    end,
+    loop().
+--- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< ---
+ 
+To test this code, you can simply launch the xpcshell program distributed
+with mozilla, and paste this javascript source in it:
+
+$ ./run-mozilla.sh ./xpcshell < node_connect.js
+
+--- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< ---
+// Comunication parameters 
+localNodeName = "pepito@makako.local";
+remoteNodeName = "pepita@makako.local";
+cookie = "one_cookie";
+
+////////////////////////////////////////////////////////////////////////////
+// Get the class XPInterfaceHelper factory
+const XPInterfaceHelperClass=
+    new Components.Constructor(
+        "@lfcia.org/xpinterface/lfXPInterfaceHelper;1",
+        "lfIXPInterfaceHelper");
+
+// Create a instance of this class
+var xpInterfaceHelper = new XPInterfaceHelperClass();
+
+print("lfIXPInterfaceHelper instantiated. Methods:");
+
+// Show all functions
+for(var list in xpInterfaceHelper) print("\t"+list);
+
+// create a node and get a new mailbox
+print ("Creating node "+localNodeName);
+node = xpInterfaceHelper.newNode(localNodeName, cookie);
+print ("Creating mailbox");
+mailbox = node.createMailBox();
+print ("Mailbox = "+mailbox.self);
+
+// Send a atom to a reply server
+an_atom = xpInterfaceHelper.newAtom("an atom!");
+an_pid = mailbox.self;
+the_tuple = xpInterfaceHelper.newTupleFromArray(2, [an_pid, an_atom]);
+
+print ("tuple = ", the_tuple.toString());
+
+// Send the message and receive the response
+try {
+	mailbox.remoteRegSend(remoteNodeName, "reply_server", the_tuple);
+
+	print ("Recibindo");
+	term = mailbox.receive();
+
+	print ("Recibido: "+term);
+
+} catch( e if (e.result & 0xff) == 0x02) {
+	print("\tException caught: " + e.toString());
+	print("\tMessage: " + e.message);
+	print("\tname: " + e.name);
+	print("\tresult: " + e.result);
+	print("\tdata " + e.location);
+	print("\tJS Type of exception: " + typeof e + "\n");
+	
+	print("\tMethods: " + typeof e + "\n");
+	for(var list in e) print("\t"+list);
+}                   
+--- 8< -------- 8< -------- 8< -------- 8< -------- 8< -------- 8< ---
+
+

@@ -1,0 +1,36 @@
+#ifndef _LFERLSTRING_H
+#define _LFERLSTRING_H
+
+#include <epi.hpp>
+
+#include "lfIErlString.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+
+class lfErlString : public lfIErlString
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLSTRING;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    lfErlString(const char* value);
+    lfErlString(ErlString *aString);
+
+private:
+    virtual ~lfErlString();
+
+protected:
+    /* additional members */
+
+    // The internal representation of the term
+    ErlTermPtr<ErlString> mTerm;
+
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+};
+
+#endif

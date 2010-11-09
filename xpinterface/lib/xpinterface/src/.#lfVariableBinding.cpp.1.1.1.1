@@ -1,0 +1,46 @@
+#include "lfXPInterfaceHelper.hpp"
+#include "lfVariableBinding.hpp"
+
+NS_IMPL_ISUPPORTS1(lfVariableBinding, lfIVariableBinding);
+
+lfVariableBinding::lfVariableBinding(): mBinding()
+{
+  /* member initializers and constructor code */
+}
+
+lfVariableBinding::~lfVariableBinding()
+{
+  /* destructor code */
+}
+
+/* lfIErlTerm search (in string name); */
+NS_IMETHODIMP lfVariableBinding::Search(const char *name, lfIErlTerm **_retval)
+{
+    ErlTerm *term = mBinding.search(name);
+    if (term) {
+        NS_ADDREF(*_retval = lfXPInterfaceHelper::fromErlTerm(term));
+    } else {
+        *_retval = 0;
+    }
+	return NS_OK;
+}
+
+/* void bind (in string name, in lfIErlTerm term); */
+NS_IMETHODIMP lfVariableBinding::Bind(const char *name, lfIErlTerm *term)
+{
+    if (term == 0) {
+        return NS_ERROR_NULL_POINTER;
+    } else {
+        ErlTerm *_term;
+        term->GetErlTerm(&_term);
+        mBinding.bind(name, _term);
+    }
+	return NS_OK;
+}
+
+/* [noscript] lfNativeVariableBinding getNative (); */
+NS_IMETHODIMP lfVariableBinding::GetNative(epi::type::VariableBinding * *_retval)
+{
+    *_retval = &mBinding;
+    return NS_OK;
+}

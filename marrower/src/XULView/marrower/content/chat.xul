@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="../skin/default.css" type="text/css"?>
+
+<!DOCTYPE window [
+<!ENTITY chat.send		"Enviar">
+]>
+
+<window 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="marrower-chat-window" title="Chat"
+    orient="vertical" flex="1">
+	
+	<tabbox>
+	  <tabs>
+		<tab label="Carlos"/>
+		<tab label="Luis"/>
+	  </tabs>
+	  <tabpanels >
+		<tabpanel orientation="vertical"  id="carlos" class="chat-panel">
+		<vbox flex="1">
+		<textbox id="dialog" readonly="true" cols="15" multiline="true" wrap="on" >
+			
+		</textbox>
+		<hbox>
+			<textbox id="msg"/>
+			<button id="send-button" label="&chat.send;"/>
+		</hbox>
+		</vbox>
+        </tabpanel>
+ 		<tabpanel orientation="vertical" id="carlos">
+		<textbox id="dialog"/>
+		<hbox>
+			<textbox id="msg"/>
+			<button id="send-button" label="&chat.send;"/>
+		</hbox>
+		</tabpanel>
+	   </tabpanels>
+	</tabbox>
+
+</window>

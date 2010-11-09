@@ -1,0 +1,37 @@
+#ifndef _LFERLPORT_H
+#define _LFERLPORT_H
+
+#include <epi.hpp>
+
+#include "lfIErlPort.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+
+class lfErlPort : public lfIErlPort
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLPORT;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    lfErlPort(const char *node, PRUint32 id, PRUint32 creation);
+    lfErlPort(ErlPort *aPort);
+
+private:
+    virtual ~lfErlPort();
+
+protected:
+    /* additional members */
+
+    // The internal representation of the term
+    ErlTermPtr<ErlPort> mTerm;
+
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+
+};
+
+#endif

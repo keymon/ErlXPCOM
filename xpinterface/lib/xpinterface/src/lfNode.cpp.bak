@@ -1,0 +1,76 @@
+#include "lfNode.hpp"
+#include "lfAbstractNode.hpp"
+#include "lfMailBox.hpp"
+#include "lfErlRef.hpp"
+#include "lfErlPort.hpp"
+#include "lfErlPid.hpp"
+#include "xpcom_utils.hpp"
+
+NS_IMPL_ISUPPORTS2(lfNode, lfIAbstractNode, lfINode);
+
+lfNode::lfNode(const char *aNodeName, const char *aCookie)
+     throw (EpiBadArgument, EpiConnectionException):
+        mAutoNode(aNodeName, aCookie), mAbstractNodeImpl(&mAutoNode)
+{
+    mAutoNode.start();
+}
+
+lfNode::~lfNode()
+{
+    mAutoNode.close();
+}
+
+/* lfIMailBox createMailBox (); */
+NS_IMETHODIMP lfNode::CreateMailBox(lfIMailBox **_retval)
+{
+    NS_ENSURE_ARG_POINTER(_retval);
+    NS_ADDREF(*_retval = new lfMailBox(mAutoNode.createMailBox()));
+    return NS_OK;
+}
+
+/* lfIErlPid createPid (); */
+NS_IMETHODIMP lfNode::CreatePid(lfIErlPid **_retval)
+{
+    NS_ADDREF(*_retval = new lfErlPid(mAutoNode.createPid()));
+    return NS_OK;
+}
+
+/* lfIErlRef createRef (); */
+NS_IMETHODIMP lfNode::CreateRef(lfIErlRef **_retval)
+{
+    NS_ADDREF(*_retval = new lfErlRef(mAutoNode.createRef()));
+    return NS_OK;
+}
+
+/* lfIErlRef createPort (); */
+NS_IMETHODIMP lfNode::CreatePort(lfIErlPort **_retval)
+{
+    NS_ADDREF(*_retval = new lfErlPort(mAutoNode.createPort()));
+    return NS_OK;
+}
+
+/* void registerMailBox (in string name, in lfIMailBox mailbox); */
+NS_IMETHODIMP lfNode::RegisterMailBox(const char *name, lfIMailBox *mailbox)
+{
+    MailBox *_mailbox;
+    mailbox->GetNative(&_mailbox);
+    mAutoNode.registerMailBox(name, _mailbox);
+    return NS_OK;
+}
+
+/* void unRegisterName (in string name); */
+NS_IMETHODIMP lfNode::UnRegisterName(const char *name)
+{
+    mAutoNode.unRegisterMailBox(name);
+    return NS_OK;
+}
+
+/* void unRegisterMailBox (in lfIMailBox mailbox); */
+NS_IMETHODIMP lfNode::UnRegisterMailBox(lfIMailBox *mailbox)
+{
+    MailBox *_mailbox;
+    mailbox->GetNative(&_mailbox);
+    mAutoNode.unRegisterMailBox(_mailbox);
+    return NS_OK;
+}
+

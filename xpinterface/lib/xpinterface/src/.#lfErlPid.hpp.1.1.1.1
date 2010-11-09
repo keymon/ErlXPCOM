@@ -1,0 +1,43 @@
+#ifndef _LFERLPID_H
+#define _LFERLPID_H
+
+#include <epi.hpp>
+using namespace epi::type;
+
+#include "lfIErlPid.h"
+#include "lfErlTerm.hpp"
+
+class lfErlPid : public lfIErlPid
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLPID;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    /**
+     * Construct from basic native values
+     */
+    lfErlPid(const char *node, PRUint32 id, PRUint32 serial, PRUint32 creation);
+
+    /**
+	 * Construct from a ErlTerm.
+	 * Data IS NOT copied, but is freed in the destructor
+     */
+    lfErlPid(ErlPid *aPid);
+
+private:
+    virtual ~lfErlPid();
+
+	// The ETERM value
+	ErlTermPtr<ErlPid> mTerm;
+
+     // Implementation of lfErlTerm methods
+     lfErlTerm_Impl _lfErlTerm_impl;
+
+protected:
+    /* additional members */
+};
+
+#endif

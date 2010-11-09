@@ -1,0 +1,23 @@
+? keymon <keymon@gmail.com>
+	ErlString is now an ErlList 
+	ErlString and ErlAtom now use char* and not std::string 
+	
+
+2005-04-10 keymon <keymon@gmail.com>
+	ErlTuple::initElement() and ErlList::addElement() return pointer to this,
+		allowing consecutive and secure insertions.
+	Added cast() static methods to all types.
+	Fixed a bug in OpenThreads library that made receive with timeout < 1000ms 
+		fail. Please, use CVS version of Openthreads.
+	Added a ping method in autonode.
+	receiveRPC throws EpiBadRPC 
+	Fixed bugs with tuple pattern matching
+	Fixed a bug in mailbox message delivering using EpiAutoNode and multiple mailboxes
+
+2005-03-30 keymon <keymon@gmail.com>
+	Ported build system to Scons
+	Added timeout to LocalNode::accept()
+	Some bug fixes 
+
+2005-02-25 keymon <keymon@gmail.com>
+	Released EPI v0.0.1

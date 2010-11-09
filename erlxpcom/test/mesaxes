@@ -1,0 +1,106 @@
+
+%         uint32 aMethod();
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "aMethod", [22 | 1]}.
+%         uint32 testInBool(in boolean);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testInBool", [true | 1]}.
+%         uint32 testOctet(in uint8);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOctet", [22 | 1]}.
+%         uint32 testShort(in int16);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testShort", [2222 | 1]}.
+%         uint32 testLong(in int32);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testLong", [2222222 | 1]}.
+%         uint32 testLongLong(in int64);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testLongLong", [22222222 | 1]}.
+%         uint32 testUnsignedShort(in uint16);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testUnsignedShort", [2222 | 1]}.
+%         uint32 testUnsignedLong(in uint32);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testUnsignedLong", [2222 | 1]}.
+%         uint32 testUnsignedLongLong(in uint64);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testUnsignedLongLong", [2222 | 1]}.
+%         uint32 testFloat(in float);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testFloat", [3.14 | 1]}.
+%         uint32 testDouble(in double);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testDouble", [3.14 | 1]}.
+%         uint32 testChar(in char);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testChar", [$a | 1]}.
+%         uint32 testWChar(in wchar_t);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testWChar", [2222 | 1]}.
+%         uint32 testAll(in boolean, in uint8, in int16, in int32, in int64, in uint16, in uint32, in uint64, in float, in double, in char, in wchar_t);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testAll", 
+	[true, 22, -222, 222222, -2222, 
+		   1, 2, 3, 3.14, 2.27, 
+		   $a, 1234| 1]}.
+%         uint32 testString(in string);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testString", ["jejeje" | 1]}.
+%         uint32 testWString(in wstring);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testWString", ["jejeja" | 1]}.
+%         uint32 testStringSizeIs(in uint32, in string_s);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testStringSizeIs", ["jejeja" | 1]}.
+%         uint32 testIID(in nsIID &);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testIID", ["ec0d3dc7-493c-40d8-9021-938277221f89" | 1]}.
+%         uint32 testISupports(in ITestErlXPCOMComponent);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testISupports", [{xpcom_oid, 1} | 1]}.
+%         uint32 testISupportsIID(in InterfaceIs *, in nsIID &);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testISupportsIID", [{xpcom_oid, 1}, "ec0d3dc7-493c-40d8-9021-938277221f89" | 1]}.
+
+%	boolean testOutBool(in boolean v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutBool", [true | 1]}.
+%	octet testOutOctet(in octet v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutOctet", [22 | 1]}.
+%	short testOutShort(in short v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutShort", [2222 | 1]}.
+%	long testOutLong(in long v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutLong", [2222222 | 1]}.
+%//	long long testOutLongLong(in long long v);
+%{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutLongLong", [22222222 | 1]}.
+%	unsigned short testOutUnsignedShort(in unsigned short v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutUnsignedShort", [2222 | 1]}.
+%	unsigned long testOutUnsignedLong(in unsigned long v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutUnsignedLong", [2222 | 1]}.
+%//	unsigned long long testOutUnsignedLongLong(in unsigned long long v);
+%{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutUnsignedLongLong", [2222 | 1]}.
+%	float testOutFloat(in float v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutFloat", [3.14 | 1]}.
+%	double testOutDouble(in double v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutDouble", [3.14 | 1]}.
+%	char testOutChar(in char v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutChar", [$a | 1]}.
+%	wchar testOutWChar(in wchar v);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutWChar", [2222 | 1]}.
+	
+
+%	void testInOutAll(
+%		inout boolean v_bool,
+%		inout octet v_octet, 
+%		inout short v_short, 
+%		inout long v_long,
+%//		inout long long v_longlong,
+%		inout unsigned short v_ushort,
+%		inout unsigned long v_ulong,
+%//		inout unsigned long long v_ulonglong,
+%		inout float v_float,
+%		inout double v_double,
+%		inout char v_char,
+%		inout wchar v_wchar);
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testInOutAll", [true, 22, -222, 222222, 1, 2, 3.14, 2.27, $a, 1234| 1]}.
+
+%	ITestErlXPCOMComponent testOutISupports();
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutISupports", [1|1]}.
+	
+%//	void testOutISupports2(out nsIIDRef iid, [iid_is(iid)]out nsISupports obj);
+
+%	string testOutString();
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutString", []}.
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutString", []}.
+%	wstring testOutWString();
+{erlxpcom, 'pepito@makako.local'}! {call_method, 1, 1, "testOutWString", []}.
+
+%//	nsIID testOutIID();
+{erlxpcom, 'pepito@makako.local'}! {call_method, 0, 1234, "getClassObjectByContractID", ["@lfcia.org/TestErlXPCOMComponent", "37a524b7-e2ed-4b35-8560-0636148f5282"]}.
+
+{erlxpcom, 'pepito@makako.local'}! {call_method, 0, 1234, "getClassObject", ["37a524b7-e2ed-4b35-8560-0636148f5282", "37a524b7-e2ed-4b35-8560-0636148f5282"]}.
+{erlxpcom, 'pepito@makako.local'}! {call_method, 2, 1234, "createInstance", [null, "37a524b7-e2ed-4b35-8560-0636148f5282"]}.
+
+{erlxpcom, 'pepito@makako.local'}! {call_method, 0, 1234, "createInstance", ["37a524b7-e2ed-4b35-8560-0636148f5282", null, "37a524b7-e2ed-4b35-8560-0636148f5282"]}.
+{erlxpcom, 'pepito@makako.local'}! {call_method, 2, 1, "aMethod", [22 | 1]}.
+

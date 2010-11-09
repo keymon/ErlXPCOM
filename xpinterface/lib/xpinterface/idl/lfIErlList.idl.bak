@@ -1,0 +1,21 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(99e697b6-f8e2-476e-8bb4-f556796ffc62)]
+
+interface lfIErlList: lfIErlTerm
+{
+    /** Length of the list */
+    readonly attribute unsigned long arity;
+
+    /**
+     * Extract an specified element
+     */
+    lfIErlTerm elementAt(in unsigned long position);
+
+    /**
+     * Get the tail of this list in given position
+     */
+    lfIErlTerm tail(in unsigned long position);
+
+
+};

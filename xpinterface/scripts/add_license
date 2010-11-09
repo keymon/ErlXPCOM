@@ -1,0 +1,13 @@
+#!/bin/sh
+
+function C_license() {
+	echo "/*"
+	cat LICENSE.preamble
+	echo "*/"
+	echo 
+}
+
+for i in `find $1 -name "*.hpp" -o -name "*.cpp" -o -name "*.idl"`; do 
+	cp "$i" "$i.bak"
+	( C_license; cat "$i.bak") > $i
+done	

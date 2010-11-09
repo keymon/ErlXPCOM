@@ -1,0 +1,36 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+
+#include "lfErlAtom.hpp"
+#include "lfErlTerm.hpp"
+#include "xpcom_utils.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlAtom, lfIErlTerm, lfIErlAtom);
+
+/**
+ * Construct from a string.
+ */
+lfErlAtom::lfErlAtom(const char *aAtomValue)
+        throw (EpiBadArgument)
+{
+    mTerm = new ErlAtom(aAtomValue);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlAtom::lfErlAtom(ErlAtom *aAtom) {
+    mTerm = aAtom;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlAtom::~lfErlAtom()
+{
+}
+
+/* readonly attribute string atom; */
+NS_IMETHODIMP lfErlAtom::GetValue(char * *aAtom)
+{
+    XPCOM_STRING_RETURN(mTerm->atomValue().c_str(), aAtom);
+}
+

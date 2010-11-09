@@ -1,0 +1,38 @@
+#ifndef _LFERLTUPLE_H
+#define _LFERLTUPLE_H
+
+#include <epi.hpp>
+
+#include "lfIErlTuple.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+
+class lfErlTuple : public lfIErlTuple
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLTUPLE;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    lfErlTuple(PRUint32 size);
+    lfErlTuple(ErlTuple *aTuple);
+    lfErlTuple(PRUint32 size, lfIErlTerm **terms)
+            throw(EpiBadArgument*);
+
+private:
+    virtual ~lfErlTuple();
+
+protected:
+    /* additional members */
+
+    // The internal representation of the term
+    ErlTermPtr<ErlTuple> mTerm;
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+
+};
+
+#endif

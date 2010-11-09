@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<window
+  title="Martin's Weblog"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript" src="http://blog.cs.cityu.edu.hk/users/50307104/xulbrowser.js" />
+
+  <tree id="list" flex="1" rows="5" seltype="single" enableColumnDrag="true">
+    <treecols>
+      <treecol id="count" label="Count" class="treecol-image"
+        src="http://blog.cs.cityu.edu.hk/users/50307104/writeback.png" flex="1" />
+      <splitter class="tree-splitter" />
+      <treecol id="subject" label="Subject" flex="50" primary="true" />
+      <splitter class="tree-splitter" />
+      <treecol id="path" label="Path" flex="25" />
+      <splitter class="tree-splitter" />
+      <treecol id="author" label="Author" flex="15" />
+      <splitter class="tree-splitter" />
+      <treecol id="date" label="Date" flex="15" />
+    </treecols>
+    <treechildren>
+      <treeitem container="true"
+        value="http://blog.cs.cityu.edu.hk/users/50307104/google/gmail-no-attachment.xhtml">
+        <treerow>
+          <treecell label="0" />
+          <treecell label="Gmail say NO to some attachments" />
+          <treecell label="/users/50307104/google" />
+          <treecell label="NG Ming Hong" />
+          <treecell label="2004/10/08 23:08:00" />
+        </treerow>
+        <treechildren>
+
+        </treechildren>
+      </treeitem>
+      <treeitem container="true"
+        value="http://blog.cs.cityu.edu.hk/users/50307104/google/gmail-drive-shell-extension.xhtml">
+        <treerow>
+          <treecell label="0" />
+          <treecell label="Gmail Virtual Filesystem for Windows" />
+          <treecell label="/users/50307104/google" />
+          <treecell label="NG Ming Hong" />
+          <treecell label="2004/10/06 22:25:00" />
+        </treerow>
+        <treechildren>
+
+        </treechildren>
+      </treeitem>
+      <treeitem container="true"
+        value="http://blog.cs.cityu.edu.hk/users/50307104/google/gmail-new-features.xhtml">
+        <treerow>
+          <treecell label="1" />
+          <treecell label="Gmail's New Features" />
+          <treecell label="/users/50307104/google" />
+          <treecell label="NG Ming Hong" />
+          <treecell label="2004/10/05 11:37:00" />
+        </treerow>
+        <treechildren>
+          <treeitem value="http://blog.cs.cityu.edu.hk/users/50307104/google/gmail-new-features.xhtml#comment-2004/12/21 14:14:58">
+            <treerow>
+              <treecell label="" />
+              <treecell label="Re: Gmail&apos;s New Features" />
+              <treecell label="" />
+              <treecell label="kavidu" />
+              <treecell label="2004/12/21 14:14:58" />
+            </treerow>
+          </treeitem>
+
+        </treechildren>
+      </treeitem>
+      <treeitem container="true"
+        value="http://blog.cs.cityu.edu.hk/users/50307104/google/google-browser-rumor.xhtml">
+        <treerow>
+          <treecell label="0" />
+          <treecell label="Google Browser?" />
+          <treecell label="/users/50307104/google" />
+          <treecell label="NG Ming Hong" />
+          <treecell label="2004/09/21 15:29:00" />
+        </treerow>
+        <treechildren>
+
+        </treechildren>
+      </treeitem>
+      <treeitem container="true"
+        value="http://blog.cs.cityu.edu.hk/users/50307104/google/worst-president.xhtml">
+        <treerow>
+          <treecell label="0" />
+          <treecell label="The Worst President Ever" />
+          <treecell label="/users/50307104/google" />
+          <treecell label="NG Ming Hong" />
+          <treecell label="2004/09/10 13:54:00" />
+        </treerow>
+        <treechildren>
+
+        </treechildren>
+      </treeitem>
+    </treechildren>
+  </tree>
+
+  <splitter />
+
+  <iframe id="browser" src="about:mozilla" flex="10" />
+
+</window>

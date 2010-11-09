@@ -1,0 +1,12 @@
+Import('env') 
+
+env['LIBS'].insert(0, 'epi')
+
+performance_programs = []
+#performance_programs += env.Program(target='ei_performance', source = 'ei_performance.cpp')
+performance_programs += \
+	env.Program(target='epi_perf_tests', source = 'epi_perf_tests.cpp')
+performance_programs += \
+	env.Program(target='ei_perf_tests', source = 'ei_perf_tests.cpp')
+
+Alias('check', performance_programs)

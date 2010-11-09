@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="xpinterface-example" title="XPInterface Example"
+    orient="vertical" align="start" flex="1">
+
+    <!-- Load the behaviour implementation -->
+	<script src="example.js"/>
+
+	<vbox>
+	<groupbox orient="vertical" align="start">
+	  	<caption label="Nodo local"/>	
+		<grid flex="1">
+			<columns><column/><column flex="1"/></columns>
+    		<rows>
+    		<row align="center">
+			    <label value="Nome local:"/>
+				<textbox id="localname" value="mozilla@makako.local"/>
+    		</row>
+    		<row align="center">
+		    	<label value="Cookie:"/>
+				<textbox id="cookie" value="one_cookie"/>
+    		</row>
+    		<row>
+		    	<button	id="create-button" label="Crear nodo" oncommand="create()"/>
+    		</row>
+			</rows>
+		</grid>
+	</groupbox>
+	<groupbox orient="vertical" align="start">
+	  	<caption label="Nodo remoto"/>	
+		<grid flex="1">
+			<columns><column/><column flex="1"/></columns>
+    		<rows>
+    		<row align="center">
+			    <label value="Nome remoto:"/>
+				<textbox id="remotename" value="pepita@makako.local"/>
+    		</row>
+    		<row>
+		    	<button	id="ping-button" label="Ping" disabled="true" oncommand="ping()"/>
+			    <label id="remote-state"/>
+    		</row>
+			</rows>
+		</grid>
+	</groupbox>
+	
+	<groupbox>
+  	<caption label="Operacións"/>	
+	<hbox align = "center">
+		<vbox>
+		    <label value="Operación:"/>
+		    <radiogroup id="operation" onselect="clearall()">
+			  <radio id="fibonacci" label="Fibonacci"/>
+		  	  <radio id="factorial" selected="true" label="Factorial"/>
+		  	  <radio id="square" label="Cuadrado"/>
+			</radiogroup>
+		</vbox>
+		
+		<vbox align="start">
+		<hbox align="center">
+		    <label value="Valor:"/>	<textbox id="value" rows="4" width="30" value="0" />
+		</hbox>
+	    <button	id="exec-button" label="Calcular" disabled="true" oncommand="calculate()"/>
+		</vbox>
+		<vbox align = "center">
+		    <label value="Resultado:"/>
+		    <label style="font-size: 300%" id="result"  value="?"/>
+		</vbox>
+	</hbox>
+	</groupbox>
+	
+	</vbox>
+    	
+</window>

@@ -1,0 +1,26 @@
+#ifndef __LFERLTERM_HPP
+#define __LFERLTERM_HPP
+
+#include <epi.hpp>
+#include "lfIErlTerm.h"
+
+using namespace epi::type;
+
+#include "xpcom_utils.hpp"
+
+/**
+ * Implementation class for common lfIErlTerm functions.
+ * Use NS_FORWARD_LFIERLTERM to forward all this methods
+ */
+class lfErlTerm_Impl {
+public:
+
+    NS_DECL_LFIERLTERM;
+
+    void init(ErlTerm *mTerm);
+
+private:
+    ErlTerm *mTerm;
+};
+
+#endif

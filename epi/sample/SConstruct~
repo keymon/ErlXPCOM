@@ -1,0 +1,13 @@
+Import('env') 
+
+# insert epi lib at start of libs list
+sample_env = env.Copy()
+sample_env['LIBS'].insert(0, 'epi')
+
+sample_sources = ['Sample.cpp']
+
+sample = sample_env.Program(target='sample', 
+                            source = sample_sources)
+
+Alias('sample', 'build_epi')
+Alias('sample', sample)

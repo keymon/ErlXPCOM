@@ -1,0 +1,55 @@
+.online-mark {
+   list-style-image: url("./images/greendot.gif");
+ }
+
+.offline-mark {
+   list-style-image: url("./images/reddot.gif");
+}
+#userinfo{ background-color: #33DD00; }
+#marrower-chat-window{
+	height: 300px;
+	width: 200px;
+}
+#marrower-main-window {
+	height: 600px;
+	width: 400px;
+}
+#main-userList {
+	width: 100px;
+}
+#main-taskList{
+	min-height: 100px;
+}
+
+#main-taskDetails{
+	min-height: 80px;
+	max-height: 120px;
+}
+#main-assigned-to{
+	width: 80px;
+}
+
+	
+button.add-remove {
+	font-size: larger;
+	border: thin #333333 dashed;
+	background-color: #9BCCCA;
+}
+
+.chat-panel {
+	max-width="300";
+	max-height="300";
+}
+
+treechildren:-moz-tree-cell(completed) {
+  background: url("./images/Check.gif") no-repeat;
+}
+treechildren:-moz-tree-cell(stopped) {
+  background: url("./images/Stop.gif") no-repeat;
+}
+treechildren:-moz-tree-cell(canceled) {
+  background: url("./images/Delete.gif") no-repeat;
+}
+treechildren:-moz-tree-cell(inprogress) {
+  background: url("./images/GreenFlag.gif") no-repeat;
+}

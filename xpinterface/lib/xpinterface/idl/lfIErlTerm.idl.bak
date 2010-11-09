@@ -1,0 +1,53 @@
+#include "nsISupports.idl"
+#include "lfIVariableBinding.idl"
+
+/* Native type for ErlTerm */
+[ptr] native lfNativeErlTerm(epi::type::ErlTerm);
+
+[scriptable, uuid(c286c293-505a-48fc-9e7b-278140c19f66)]
+
+interface lfIErlTerm : nsISupports
+{
+    /** Returns the String representation of the term */
+    string toString();
+
+    /**
+     * Returns the String representation of the term,
+     * using a VariableBinding
+     */
+    string toStringWithBinding(in lfIVariableBinding binding);
+
+    /** Checks if the ErlTerm contains a valid value (is initializated) */
+    boolean isValid();
+
+    /**
+     * Check if two terms are equal
+     */
+    boolean equals(in lfIErlTerm term);
+
+    /**
+     * Perfom a pattern matching
+     */
+    boolean match(in lfIErlTerm pattern);
+
+    /**
+     * Perfom a pattern matching using a variable binding. If success
+     * VariableBinding will be updated with new variables.
+     */
+    boolean matchWithBinding(in lfIErlTerm pattern, in lfIVariableBinding binding);
+
+    /**
+     * Returns the equivalent without inner variables, using the
+     * given binding to substitute them.
+     */
+    lfIErlTerm subst(in lfIVariableBinding binding);
+
+
+    /**
+     * Returns the native EPI representation (ErlTerm *) of this ErlTerm.
+     */
+    [noscript] lfNativeErlTerm getErlTerm();
+
+};
+
+

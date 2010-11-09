@@ -1,0 +1,10 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(aaac2a4e-e8e3-4716-98ce-4f45a8c90160)]
+
+interface lfIErlDouble: lfIErlTerm
+{
+    /** Double value */
+    readonly attribute double value;
+
+};

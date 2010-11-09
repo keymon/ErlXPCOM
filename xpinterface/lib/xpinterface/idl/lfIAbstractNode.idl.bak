@@ -1,0 +1,12 @@
+#include "nsISupports.idl"
+
+[scriptable, uuid(4dde9d13-e521-4dae-9cd3-d192dca13dc4)]
+
+interface lfIAbstractNode: nsISupports
+{
+    readonly attribute string nodeName;
+    readonly attribute string aliveName;
+    readonly attribute string hostName;
+    attribute string cookie;
+
+};

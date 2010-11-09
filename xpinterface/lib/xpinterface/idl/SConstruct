@@ -1,0 +1,24 @@
+Import('*')
+
+env.Append(IDLPATH = Dir("."))
+
+idl_sources = Split(""" 
+	lfIXPInterfaceHelper.idl lfIXPInterfaceError.idl 
+	lfIErlTerm.idl lfIErlAtom.idl lfIErlLong.idl lfIErlDouble.idl 
+	lfIErlString.idl lfIErlBinary.idl lfIErlRef.idl lfIErlPort.idl 
+	lfIErlPid.idl lfIErlList.idl lfIErlEmptyList.idl lfIErlConsList.idl 
+    lfIErlTuple.idl lfIErlVariable.idl lfIVariableBinding.idl 
+	lfIMailBox.idl lfIAbstractNode.idl lfINode.idl
+	""")
+
+interfaceheaders = []
+typelibraries = []
+
+for idl_source in idl_sources: 
+	ih = env.InterfaceHeader(idl_source)
+	tl = env.TypeLibrary(idl_source)
+	interfaceheaders.append(ih)
+	typelibraries.append(tl)
+
+install_typelibraries = Install(MOZILLA_COMPONENTS_PATH, typelibraries) 
+Alias('install', install_typelibraries)

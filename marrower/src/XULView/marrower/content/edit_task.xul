@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="./default.css" type="text/css"?>
+
+
+<!DOCTYPE window [
+
+<!ENTITY task.edit.dialog.title	"Edición de tarefa">
+
+<!ENTITY task.name				"Nome de tarefa">
+<!ENTITY task.description		"Descripción">
+<!ENTITY task.duration			"Duración">
+<!ENTITY task.completion		"Progreso">
+<!ENTITY task.state				"Estado">
+<!ENTITY task.priority			"Prioridad">
+
+<!ENTITY task.state.stopped		"Detida">
+<!ENTITY task.state.inprogress	"En progreso">
+<!ENTITY task.state.completed	"Completa">
+<!ENTITY task.state.canceled	"Cancelada">
+<!ENTITY task.priority.high		"Alta">
+<!ENTITY task.priority.medium	"Media">
+<!ENTITY task.priority.low		"Baixa">
+
+]>
+
+<dialog id="task-edit-dialog" title="&task.edit.dialog.title;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        buttons="accept,cancel"
+		onload = "loadEditTaskDialog()"
+        ondialogaccept="return taskEditOk(this);"
+        ondialogcancel="return taskEditCancel(this);">
+
+	<!-- Load the behaviour implementation -->
+	<script src="edit_task.js"/>
+	
+	<grid flex="1">
+	<columns><column/><column flex="1"/></columns>
+	<rows>
+	<row align="center">
+		<label value="&task.name;"/>
+		<textbox id="task-name"/>
+	</row>
+	<row align="center">
+		<label value="&task.description;"/>
+		<textbox id="task-description"/>
+	</row>
+	<row align="center">
+		<label value="&task.duration;"/>
+		<textbox id="task-duration"/>
+	</row>
+	<row align="center">
+		<label value="&task.completion;"/>
+		<textbox id="task-completion"/>
+	</row>
+	<row align="center">
+		<label value="&task.state;"/>
+		<radiogroup id="task-state">
+		  <radio id="task-state-stopped" selected="true" label="&task.state.stopped;"/>
+		  <radio id="task-state-inprogress"  label="&task.state.inprogress;"/>
+		  <radio id="task-state-completed" label="&task.state.completed;"/>
+		  <radio id="task-state-canceled" label="&task.state.canceled;"/>
+		</radiogroup>
+	</row>
+	<row align="center">
+		<label value="&task.priority;"/>
+		<radiogroup id="task-priority">
+		  <radio id="task-priority-high" selected="true" label="&task.priority.high;"/>
+		  <radio id="task-priority-medium"  label="&task.priority.medium;"/>
+		  <radio id="task-priority-low" label="&task.priority.low;"/>
+		</radiogroup>
+	</row>
+	
+	</rows>
+	</grid>
+
+</dialog>
+

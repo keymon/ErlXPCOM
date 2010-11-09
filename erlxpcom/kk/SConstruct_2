@@ -1,0 +1,23 @@
+import os
+env = Environment(ENV = os.environ)
+
+Import('*')
+
+erlxpcom_sources = Split ("""
+	command_line_tokenizer.cpp NSPRUtils.cpp ErlXPCOMInit.cpp
+	ErlXPCOMHelper.cpp ErlXPCOMLog.cpp RequestTransport.cpp ErlangOrb.cpp
+	ErlXPCOMMethodInfo.cpp	ErlXPCOMMethod.cpp ErlXPCOMMethodVisitor.cpp 
+	ErlXPCOMRemoteMethod.cpp ErlXPCOMLocalMethod.cpp
+	ErlXPCOMMethodMarshaller.cpp ErlXPCOMMethodUnmarshaller.cpp
+	Call.cpp XPCOMCall.cpp ErlangCall.cpp 
+	ErlXPCOMStub.cpp ErlXPCOMProxy.cpp
+	""")
+
+erlxpcom_component = env.SharedLibrary('ErlXPCOM',  
+								[ 'ErlXPCOMLoader.cpp' ] + erlxpcom_sources)
+
+install_component = Install(MOZILLA_COMPONENTS_PATH, erlxpcom_component) 
+
+Alias('install', install_component)
+
+

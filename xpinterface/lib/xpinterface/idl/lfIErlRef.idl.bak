@@ -1,0 +1,25 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(7e50d059-bda4-441d-91d9-6c2047a471f1)]
+
+interface lfIErlRef: lfIErlTerm
+{
+    /** the node name from the Ref. */
+    readonly attribute string node;
+
+    /** the id(0) number from the Ref. */
+    readonly attribute unsigned long id0;
+
+    /** the id(1) number from the Ref. */
+    readonly attribute unsigned long id1;
+
+    /** the id(2) number from the Ref. */
+    readonly attribute unsigned long id2;
+
+    /** indicates if this an old/new style Ref */
+    readonly attribute boolean newStyle;
+
+    /** the creation number from the Ref. */
+    readonly attribute unsigned long creation;
+
+};

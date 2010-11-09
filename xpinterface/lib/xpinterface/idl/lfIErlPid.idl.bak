@@ -1,0 +1,19 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(71d85f38-9308-47f3-b785-f2a7b1c0af32)]
+
+interface lfIErlPid : lfIErlTerm
+{
+	 /** the node name from the PID. */
+	 readonly attribute string node;
+
+	 /** the id number from the PID. */
+	 readonly attribute unsigned long id;
+
+	 /** the serial number from the PID. */
+     readonly attribute unsigned long serial;
+
+	 /** the creation number from the PID. */
+     readonly attribute unsigned long creation;
+
+};

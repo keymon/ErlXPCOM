@@ -1,0 +1,38 @@
+#ifndef _LFERLREF_H
+#define _LFERLREF_H
+
+#include <epi.hpp>
+
+#include "lfIErlRef.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+
+class lfErlRef : public lfIErlRef
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLREF;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    lfErlRef(const char *node, PRUint32 ids[],
+             PRUint32 creation, const bool newStyle = true);
+    lfErlRef(ErlRef *aRef);
+
+private:
+    virtual ~lfErlRef();
+
+protected:
+    /* additional members */
+
+    // The internal representation of the term
+    ErlTermPtr<ErlRef> mTerm;
+
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+
+};
+
+#endif

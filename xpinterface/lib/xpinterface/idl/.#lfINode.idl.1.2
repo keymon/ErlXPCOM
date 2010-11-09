@@ -1,0 +1,74 @@
+/*
+***** BEGIN LICENSE BLOCK *****
+
+This file is part of the EPI (Erlang Plus Interface) Library.
+
+Copyright (C) 2005 Hector Rivas Gandara <keymon@gmail.com>
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+***** END LICENSE BLOCK *****
+*/
+
+#include "nsISupports.idl"
+#include "lfIAbstractNode.idl"
+#include "lfIMailBox.idl"
+#include "lfIErlPid.idl"
+#include "lfIErlPort.idl"
+#include "lfIErlRef.idl"
+
+[scriptable, uuid(0e08bf2b-10cb-4c0c-9666-9e451948046e)]
+
+interface lfINode : lfIAbstractNode
+{
+    /**
+     * Create a new MailBox with a new pid associated to this node.
+     */
+    lfIMailBox createMailBox();
+
+    /**
+     * Register an MailBox with given name. MailBox must be associated
+     * to this node.
+     */
+    void registerMailBox(in string name, in lfIMailBox mailbox);
+
+    /**
+     * Unregister a name for a mailbox
+     */
+    void unRegisterName(in string name);
+
+    /**
+     * Unregister all names for this mailbox
+     */
+    void unRegisterMailBox(in lfIMailBox mailbox);
+
+    /**
+     * Create a new unique pid
+     */
+    lfIErlPid createPid();
+
+    /**
+     * Create a new unique port
+     */
+    lfIErlPort createPort();
+
+    /**
+     * Create a new unique ref
+     */
+    lfIErlRef createRef();
+
+
+
+};

@@ -1,0 +1,31 @@
+#include "nsISupports.idl"
+
+interface lfIErlTerm : nsISupports
+{
+	const short erl_compound          (1 << 7);
+
+	const short erl_type_undef        0;
+	const short erl_type_integer      1;
+	const short erl_type_u_integer    2; /* unsigned int */
+	const short erl_type_atom         3;
+	const short erl_type_pid          4;
+	const short erl_type_port         5;
+	const short erl_type_ref          6;
+	const short erl_type_const        (7 | erl_type_compound);
+	const short erl_type_list         erl_type_CONS;
+	const short erl_type_nil          8;
+	const short erl_type_empty_list   erl_type_nil;
+	const short erl_type_tuple        (9 | erl_type_compound);
+	const short erl_type_binary      10;
+	const short erl_type_float       11;
+	const short erl_type_variable    (12 | erl_type_compound); /* used in patterns */
+	const short erl_type_small_big   13;
+	const short erl_type_u_small_big 14;
+	const short erl_type_function    (15 | erl_type_compound);
+	const short erl_type_big         16;
+	
+	string toString();
+	
+};
+
+

@@ -1,0 +1,35 @@
+#include "nsISupports.idl"
+#include "nsIEnumerator.idl"
+
+/**
+ * Definición do interfaz lfITaskVO.
+ * Almacena a información dunha tarea
+ */
+[scriptable, uuid(3d611d45-1df1-44a1-a061-55dd0be4a875)]
+interface lfITaskVO : nsISupports 
+{
+	const short STOPED = 0;
+	const short INPROGRESS = 1;
+	const short COMPLETED = 2;
+	const short CANCELED = 3;
+
+	const short HIGH = 0;
+	const short MEDIUM = 1;
+	const short LOW = 2;
+
+	attribute long id;
+	attribute string name;
+	attribute string description;
+	attribute string duration;
+	attribute short state;
+	attribute long completion;
+	attribute short priority;
+
+	void getAssignedTo(out unsigned long count, 
+					   [retval, array, size_is(count)] out string logins);
+	
+	void init(in long id, in long name, in long description, in long duration, 
+			  in long state, in long completion, in long priority);
+			
+};
+	

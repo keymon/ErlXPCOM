@@ -1,0 +1,43 @@
+#ifndef _LFERLVARIABLE_H
+#define _LFERLVARIABLE_H
+
+#include <epi.hpp>
+
+#include "lfIErlVariable.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+
+class lfErlVariable : public lfIErlVariable
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLVARIABLE;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    /**
+     * Construct from a string.
+     */
+    lfErlVariable(const char *aAtomValue);
+
+    /**
+     * Construct from a ErlTerm
+     */
+    lfErlVariable(ErlVariable *aVariable);
+
+private:
+    virtual ~lfErlVariable();
+
+    // The internal representation of the term
+    ErlTermPtr<ErlVariable> mTerm;
+
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+
+protected:
+    /* additional members */
+};
+
+#endif

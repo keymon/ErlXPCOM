@@ -1,0 +1,10 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(8c1902ad-c49b-4f31-bb49-8f1ad0ab803c)]
+
+interface lfIErlString: lfIErlTerm
+{
+    /** Long value */
+    readonly attribute string value;
+
+};

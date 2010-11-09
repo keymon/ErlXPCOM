@@ -1,0 +1,24 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(742d6782-d4e5-4316-bbb1-dc9f69f4a84b)]
+
+interface lfIErlTuple : lfIErlTerm
+{
+    /** Size of the tuple */
+    readonly attribute unsigned long arity;
+
+    /**
+	 * Set the terms of the tuple in a secuence.
+	 * This function must be called 'size' times to init the tuple.
+	 * The fisrt time inits the position 0, second the position 1, etc...
+	 * The function fails if all the elements have been added
+	 * @param anErlTerm lfIErlTerm to add
+     */
+	void initElement(in lfIErlTerm anErlTerm);
+
+    /**
+	 * Extract an specified element
+	 */
+	lfIErlTerm elementAt(in unsigned long position);
+
+};

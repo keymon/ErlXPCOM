@@ -1,0 +1,60 @@
+import os
+
+Import('*')
+
+# IDLs
+env.Append(IDLPATH = Dir("."))
+
+idl_sources = Split(""" 
+	ITestErlXPCOMComponent.idl
+	""")
+
+interfaceheaders = []
+typelibraries = []
+
+for idl_source in idl_sources: 
+	ih = env.InterfaceHeader(idl_source)
+	tl = env.TypeLibrary(idl_source)
+	interfaceheaders.append(ih)
+	typelibraries.append(tl)
+
+install_typelibraries = Install(MOZILLA_COMPONENTS_PATH, typelibraries) 
+Alias('install', install_typelibraries)
+
+##############################################################################
+# Tests
+env_test = env.Copy()
+env_test.Append(CPPPATH = [Dir("../src")])
+
+test_programs = []
+test_programs += env_test.Program('testNSPRUtils', 
+								  [ env_test.Object('testNSPRUtils.cpp'),
+								    env_test.Object('../src/NSPRUtils.cpp') ] )
+
+test_component = env.SharedLibrary('TestErlXPCOMComponent', 
+									[ 'TestErlXPCOMComponent.cpp' ]);	
+
+install_component = Install(MOZILLA_COMPONENTS_PATH, test_component) 
+
+Alias('install', install_component)
+
+##############################################################################
+# Erlang component. default paths 
+env.Append(ERLINCLUDE = [Dir("."), Dir("../erlang")])
+env.Append(ERLPATH = [Dir("."), Dir("../erlang")])
+
+erlang_sources = Split(""" 
+	testErlXPCOMComponent.erl
+	""")
+
+beams = []
+
+for erlang_source in erlang_sources: 
+	beam = env.Beam(erlang_source)
+	beams.append(beam)
+
+# install the component
+install_component_beams = Install(
+	os.path.join(MOZILLA_COMPONENTS_PATH, 'testErlXPCOMComponent.erlang'), beams) 
+Alias('install', install_component_beams)
+

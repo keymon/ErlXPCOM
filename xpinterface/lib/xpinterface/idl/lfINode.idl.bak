@@ -1,0 +1,50 @@
+#include "nsISupports.idl"
+#include "lfIAbstractNode.idl"
+#include "lfIMailBox.idl"
+#include "lfIErlPid.idl"
+#include "lfIErlPort.idl"
+#include "lfIErlRef.idl"
+
+[scriptable, uuid(0e08bf2b-10cb-4c0c-9666-9e451948046e)]
+
+interface lfINode : lfIAbstractNode
+{
+    /**
+     * Create a new MailBox with a new pid associated to this node.
+     */
+    lfIMailBox createMailBox();
+
+    /**
+     * Register an MailBox with given name. MailBox must be associated
+     * to this node.
+     */
+    void registerMailBox(in string name, in lfIMailBox mailbox);
+
+    /**
+     * Unregister a name for a mailbox
+     */
+    void unRegisterName(in string name);
+
+    /**
+     * Unregister all names for this mailbox
+     */
+    void unRegisterMailBox(in lfIMailBox mailbox);
+
+    /**
+     * Create a new unique pid
+     */
+    lfIErlPid createPid();
+
+    /**
+     * Create a new unique port
+     */
+    lfIErlPort createPort();
+
+    /**
+     * Create a new unique ref
+     */
+    lfIErlRef createRef();
+
+
+
+};

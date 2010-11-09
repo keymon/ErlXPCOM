@@ -1,0 +1,92 @@
+#include "nsISupports.idl"
+#include "nsIClassInfo.idl"
+
+[scriptable, uuid(37a524b7-e2ed-4b35-8560-0636148f5282)]
+
+interface ITestErlXPCOMComponent : nsISupports
+{
+	attribute AString one_string;
+	readonly attribute AString other_string;
+
+//    void Init(in string localnodename, in string remotenodename, 
+//			  in string cookie, in boolean debug);
+    void PrintStringArray(in PRUint32 count, 
+                          [array, size_is(count)] in string valueArray);
+	
+    void GetStrings(out PRUint32 count,
+					[retval, array, size_is(count)] out string str);
+	void aMethod();
+
+	// In params
+	void testInBool(in boolean v);
+	void testOctet(in octet v);
+	void testShort(in short v);
+	void testLong(in long v);
+	void testLongLong(in long long v);
+	void testUnsignedShort(in unsigned short v);
+	void testUnsignedLong(in unsigned long v);
+	void testUnsignedLongLong(in unsigned long long v);
+	void testFloat(in float v);
+	void testDouble(in double v);
+	void testChar(in char v);
+	void testWChar(in wchar v);
+	
+	void testAll(in boolean v_bool,
+				 in octet v_octet, 
+				 in short v_short, 
+				 in long v_long,
+				 in long long v_longlong,
+				 in unsigned short v_ushort,
+				 in unsigned long v_ulong,
+				 in unsigned long long v_ulonglong,
+				 in float v_float,
+				 in double v_double,
+				 in char v_char,
+				 in wchar v_wchar);
+
+	void testString(in string s);
+	void testWString(in wstring s);
+	void testStringSizeIs(in unsigned long count, [size_is (count)] in string str);
+
+	void testIID(in nsIIDRef iid);
+
+	void testISupports(in ITestErlXPCOMComponent obj);
+	void testISupportsIID([iid_is(iid) ] in ITestErlXPCOMComponent obj, in nsIIDRef iid);
+
+	// Out params 
+	boolean testOutBool(in boolean v);
+	octet testOutOctet(in octet v);
+	short testOutShort(in short v);
+	long testOutLong(in long v);
+//	long long testOutLongLong(in long long v);
+	unsigned short testOutUnsignedShort(in unsigned short v);
+	unsigned long testOutUnsignedLong(in unsigned long v);
+//	unsigned long long testOutUnsignedLongLong(in unsigned long long v);
+	float testOutFloat(in float v);
+	double testOutDouble(in double v);
+	char testOutChar(in char v);
+	wchar testOutWChar(in wchar v);
+//	nsIIDRef testOutIID();
+	string testOutString();
+	wstring testOutWString();
+	
+	void testInOutAll(
+		inout boolean v_bool,
+		inout octet v_octet, 
+		inout short v_short, 
+		inout long v_long,
+//		inout long long v_longlong,
+		inout unsigned short v_ushort,
+		inout unsigned long v_ulong,
+//		inout unsigned long long v_ulonglong,
+		inout float v_float,
+		inout double v_double,
+		inout char v_char,
+		inout wchar v_wchar);
+
+	ITestErlXPCOMComponent testOutISupports();
+	
+//	void testOutISupports2(out nsIIDRef iid, [iid_is(iid)]out nsISupports obj);
+
+
+};

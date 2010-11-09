@@ -1,0 +1,49 @@
+import os
+
+Import('*')
+
+# The component name
+COMPONENT_NAME = "marrower_component"
+
+# IDLs
+env.Append(IDLPATH = Dir("."))
+
+idl_sources = Split(""" 
+	lfIMarrower.idl lfITaskVO.idl lfIUserVO.idl
+	""")
+
+interfaceheaders = []
+typelibraries = []
+
+for idl_source in idl_sources: 
+	tl = env.TypeLibrary(idl_source)
+	typelibraries.append(tl)
+
+install_typelibraries = Install(MOZILLA_COMPONENTS_PATH, typelibraries) 
+Alias('install', install_typelibraries)
+
+
+# Erlang
+
+# Default paths 
+env.Append(ERLINCLUDE = [Dir(".")])
+env.Append(ERLPATH = [Dir(".")])
+
+erlang_sources = Split(""" 
+	marrower_server.erl user_db.erl task_db.erl marrower_test.erl 
+	lfTaskVO.erl lfUserVO.erl lfMarrower.erl lfListSimpleEnumerator.erl 
+	marrower_component.erl
+	""")
+
+
+beams = []
+
+for erlang_source in erlang_sources: 
+	beam = env.Beam(erlang_source)
+	beams.append(beam)
+
+# install the component
+install_component_beams = Install(
+	os.path.join(MOZILLA_COMPONENTS_PATH, COMPONENT_NAME+'.erlang'), beams) 
+Alias('install', install_component_beams)
+

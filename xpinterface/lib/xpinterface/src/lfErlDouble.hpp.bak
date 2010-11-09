@@ -1,0 +1,38 @@
+#ifndef _LFERLDOUBLE_H
+#define _LFERLDOUBLE_H
+
+#include <epi.hpp>
+
+#include "lfIErlDouble.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+
+class lfErlDouble : public lfIErlDouble
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLDOUBLE;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    lfErlDouble(double value);
+    lfErlDouble(ErlDouble *aDouble);
+
+private:
+    virtual ~lfErlDouble();
+
+protected:
+    /* additional members */
+
+    // The internal representation of the term
+    ErlTermPtr<ErlDouble> mTerm;
+
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+
+
+};
+
+#endif

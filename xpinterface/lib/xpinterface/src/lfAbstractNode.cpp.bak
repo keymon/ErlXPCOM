@@ -1,0 +1,41 @@
+#include "lfAbstractNode.hpp"
+#include "xpcom_utils.hpp"
+
+lfAbstractNode::lfAbstractNode(AbstractNode *node): mNode(node)
+{
+
+}
+
+lfAbstractNode::~lfAbstractNode()
+{
+}
+
+/* readonly attribute string nodeName; */
+NS_IMETHODIMP lfAbstractNode::GetNodeName(char * *aNodeName)
+{
+    XPCOM_STRING_RETURN(mNode->getNodeName().c_str(), aNodeName);
+}
+
+/* readonly attribute string aliveName; */
+NS_IMETHODIMP lfAbstractNode::GetAliveName(char * *aAliveName)
+{
+    XPCOM_STRING_RETURN(mNode->getAliveName().c_str(), aAliveName);
+}
+
+/* readonly attribute string hostName; */
+NS_IMETHODIMP lfAbstractNode::GetHostName(char * *aHostName)
+{
+    XPCOM_STRING_RETURN(mNode->getHostName().c_str(), aHostName);
+}
+
+/* attribute string cookie; */
+NS_IMETHODIMP lfAbstractNode::GetCookie(char * *aCookie)
+{
+    XPCOM_STRING_RETURN(mNode->getCookie().c_str(), aCookie);
+}
+NS_IMETHODIMP lfAbstractNode::SetCookie(const char * aCookie)
+{
+    mNode->setCookie(aCookie);
+    return NS_OK;
+}
+

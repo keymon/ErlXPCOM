@@ -1,0 +1,8 @@
+#include "lfIErlList.idl"
+
+[scriptable, uuid(cb6e5f3e-7a4c-4918-98ea-c05f5f9c6646)]
+
+interface lfIErlEmptyList: lfIErlList
+{
+
+};

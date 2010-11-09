@@ -1,0 +1,39 @@
+#ifndef _LFABSTRACTNODE_H
+#define _LFABSTRACTNODE_H
+
+#include <epi.hpp>
+
+using namespace epi::node;
+
+#include "lfIAbstractNode.h"
+
+// Forward declaration
+class lfNode;
+class lfPeerNode;
+
+/**
+ * Implementation class of an abstract node to
+ * be used in subclases by delegation
+ */
+class lfAbstractNode
+{
+    friend class lfNode;
+    friend class lfPeerNode;
+public:
+    NS_DECL_LFIABSTRACTNODE;
+
+private:
+    AbstractNode *mNode;
+
+protected:
+    /**
+     * Create a new abstract node
+     * @param node encapsulated node. This pointer WILL NOT
+     * be deleted.
+     */
+    lfAbstractNode(AbstractNode *node);
+    /* additional members */
+    virtual ~lfAbstractNode();
+};
+
+#endif

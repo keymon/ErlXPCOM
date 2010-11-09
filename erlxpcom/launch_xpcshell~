@@ -1,0 +1,7 @@
+export ERLXPCOM_LOCAL_NODENAME="mozilla@makako.local"
+export ERLXPCOM_REMOTE_NODENAME="erlang@makako.local"
+export ERLXPCOM_COOKIE="one_cookie"
+export ERLXPCOM_ERLANG_COMMAND_VAR="/sw/bin/erl -pa `pwd`/erlang"
+#export ERLXPCOM_LAUNCH_ERLANG="0"
+export ERLXPCOM_LAUNCH_ERLANG="1"
+../../mozilla/dist/bin/run-mozilla.sh ../../mozilla/dist/bin/xpcshell 

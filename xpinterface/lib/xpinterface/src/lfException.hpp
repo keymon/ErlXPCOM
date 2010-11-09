@@ -1,0 +1,63 @@
+/*
+***** BEGIN LICENSE BLOCK *****
+
+This file is part of the XPInterface Component.
+
+Copyright (C) 2005 Hector Rivas Gandara <keymon@gmail.com>
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+***** END LICENSE BLOCK *****
+*/
+
+#ifndef __LFEXCEPTION_HPP
+#define __LFEXCEPTION_HPP
+
+#include "nsString.h"
+#include "nsIException.h"
+#include "nsIServiceManager.h"
+#include "nsIExceptionService.h"
+#include "nsCOMPtr.h"
+
+
+class lfException : public nsIException
+{
+public:
+  lfException(nsresult aStatus, const nsACString & aMessage, const nsACString & aName, nsIException* aInner);
+  virtual ~lfException();
+
+  NS_DECL_ISUPPORTS
+  NS_DECL_NSIEXCEPTION
+
+  static nsresult AddException(nsresult aStatus, const nsACString & aName, const nsACString & aMessage,PRBool aClear = PR_FALSE);
+
+protected:
+  nsresult mStatus;
+  nsCString mName;
+  nsCString mMessage;
+  nsCOMPtr<nsIException> mInner;
+  nsCOMPtr<nsIStackFrame> mFrame;
+};
+
+
+#define XPINTERFACE_EXCEPTION(aStatus, aName, aMessage)  lfException::AddException(aStatus,NS_LITERAL_STRING(aName),NS_LITERAL_STRING(aMessage))
+
+#define LF_EXCEPTION_CLASSID                   \
+{ /* 32573cbc-9797-48c0-b61f-9d5ebce280cf */      \
+ 0x32573cbc, 0x9797, 0x48c0,                       \
+{0xb6, 0x1f, 0x9d, 0x5e, 0xbc, 0xe2, 0x80, 0xcf} }
+#define LF_EXCEPTION_CONTRACTID "@lfcia.org/xpinterface/exception"
+
+#endif // __LFEXCEPTION_HPP

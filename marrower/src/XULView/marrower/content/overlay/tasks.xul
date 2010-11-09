@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+
+<!DOCTYPE window [
+<!ENTITY main.userInfo						"Info">
+<!ENTITY main.userEdit						"Editar">
+<!ENTITY main.userPanel.head.user			"Usuarios">
+<!ENTITY main.task-viewall                  "Ver todas">
+<!ENTITY main.task-edit						"Editar">
+<!ENTITY main.user-chat						"Conversacion">
+<!ENTITY main.add							"Añadir">
+<!ENTITY main.remove						"Borrar">
+<!ENTITY main.connect						"Conectar">
+
+<!ENTITY user.details           "Información do usuario">
+<!ENTITY user.login				"Conta">
+<!ENTITY user.alias				"Apodo">
+<!ENTITY user.firstname         "Nome">
+<!ENTITY user.lastname          "Apelidos">
+<!ENTITY user.email				"Email">
+<!ENTITY user.address           "Dirección">
+<!ENTITY user.birthdate         "Cumpreanos">
+
+<!ENTITY task.name				"Nome de tarefa">
+<!ENTITY task.description		"Descripción">
+<!ENTITY task.duration			"Duración">
+<!ENTITY task.completion		"Progreso">
+<!ENTITY task.state				"Estado">
+<!ENTITY task.priority			"Prioridad">
+<!ENTITY task.assigned-to		"Asignado a...">
+<!ENTITY task.details           "Detalles da tarefa">
+<!ENTITY task.predepends		"Predecesoras">
+<!ENTITY task.postdepends		"Sudecesoras">
+
+<!ENTITY task.state.completed	"Completado">
+<!ENTITY task.state.inprogress	"En progreso">
+<!ENTITY task.state.stoped		"Detido">
+<!ENTITY task.state.canceled	"Cancelado">
+
+<!ENTITY task.priority.high		"Alta">
+<!ENTITY task.priority.medium	"Normal">
+<!ENTITY task.priority.low		"Baixa">
+
+]>
+
+
+<overlay id="task-panel_overlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<vbox id="task-panel" flex="1">
+<tree id="task-tree" enableColumnDrag="true" flex="1" 
+	onselect="myMarrowerController.showTaskInfo();">
+	<treecols>
+		<treecol 
+			id="task-state-col" 
+			flex="0" persist="width ordinal" 
+			style = "min-width:25px;max-width:25px"/>
+		<splitter class="tree-splitter"/>
+		<treecol 
+			id="task-name-col" label="&task.name;" 
+			flex="2" persist="width ordinal" 
+			crop="end"/>
+		<splitter class="tree-splitter"/>
+		<treecol 
+			id="task-description-col" label="&task.description;" 
+			flex="2" persist="width ordinal" 
+			crop="end"/>
+		<splitter class="tree-splitter"/>
+		<treecol 
+			id="task-duration-col" label="&task.duration;" 
+			flex="0" persist="width ordinal"/>
+		<splitter class="tree-splitter"/>
+		<treecol 
+			id="task-completion-col" label="&task.completion;" 
+			flex="0" persist="width ordinal" 
+			type="progressmeter"/>
+		<splitter class="tree-splitter"/>
+	</treecols>
+	<treechildren id="task-list-tree" flex="1">
+	<treeitem>
+	<treerow>
+		<treecell properties="completed"/>
+		<treecell label="Tarea 1"/>
+		<treecell label="Descripcion Tarea 1"/>
+		<treecell label="10h"/>
+		<treecell value="50" mode="normal"/>
+	</treerow>
+	</treeitem>
+	</treechildren>
+</tree>
+<hbox align="right">
+	<button	id="task.viewall" label="&main.task-viewall;" 
+		oncommand="myMarrowerController.getAllTasks();
+				   myMarrowerController.refreshTasks();"/>
+	<button	id="task.edit" label="&main.task-edit;" command="task-edit" />
+	<button	id="task.add" label="&main.add;"
+		oncommand="myMarrowerController.editTaskForCreation();"/>
+	<button	id="task.remove" label="&main.remove;"  
+		oncommand="myMarrowerController.removeTask()"/>
+</hbox>
+</vbox>
+
+</overlay>

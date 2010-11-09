@@ -1,0 +1,168 @@
+Introduction:
+~~~~~~~~~~~~~
+
+The Erlang Plus Interface library (EPI) is a tool set of C++ classes to 
+easily build applications in C++ what comunicates with Erlang.
+
+The intention of the library is to cover the holes that EI library offers:
+
+	- An object oriented implementation
+	- A simple API
+	- Extensibility
+	- Abstraction of comunication mechanism
+	- Simplified management of incoming messages (mailboxes)
+	
+EPI is realased under the LGPL license. For details please see the file
+"COPYING" distributed with EPI source code.
+
+EPI works in a similar manner than jinterface the library for java
+http://www.erlang.se/doc/doc-5.0.1/lib/jinterface-1.2/doc/. 
+
+It have some differences:
+
+	- All comunication is done throw MailBoxes, no matters if you use
+		self or auto managed nodes.
+	- Epi abstracts the comunication mechanism, and you can extend it with new
+		mechanism (using ErlangTransport interface and ErlangTransportFactory)
+
+NOTE: EPI is an alpha version and is probably full of bugs. 
+
+Where can I get it?
+~~~~~~~~~~~~~~~~~~~
+
+EPI is hosted in sourceforge.net, at http://www.sourceforge.net/epi
+
+
+Requirements:
+~~~~~~~~~~~~~
+
+In order to build EPI you need the following software:
+
+	- Scons (www.scons.org) 
+	- g++ (tested with version 3.3) 
+
+And the following libraries:
+
+	- OpenThreads library.
+		http://openthreads.sourceforge.net/
+		
+		I highly recomend get the sources from cvs:
+		
+	    cvs -d :pserver:cvsguest@openscenegraph.org:/cvs/OpenThreads login
+	    cvs -d :pserver:cvsguest@openscenegraph.org:/cvs/OpenThreads co OpenThreadsUpdate
+	
+	- LibCWD for debug messages. Not needed if debug is disabled. 
+		http://libcwd.sourceforge.net/
+	- EI library (tested with version 3.5)
+
+
+Configure and Building:
+~~~~~~~~~~~~~~~~~~~~~~~
+
+First configure epi creating the file epi-X.X.X/custom.py with the following content:
+
+-- 8< ------ 8< ------ 8< ------ 8< ------ 8< ------ 8< --
+# EI Library path
+EI_INC='/path/to/erl_interface/include/' 
+EI_LIB='/path/to/erl_interface/lib/'
+# Openthreads path
+OPENTHREADS_INC='/path/to/openthreads/include/'
+OPENTHREADS_LIB='/path/to/openthreads/lib' 
+# Libcwd path
+LIBCWD_INC = '/path/to/libcwd/inc'
+LIBCWD_LIB = '/path/to/libcwd/inc'
+
+# debug build y/n
+debug = 1 
+-- 8< ------ 8< ------ 8< ------ 8< ------ 8< ------ 8< --
+
+if any path is unnecesary (libraries are installed), you can not set this 
+variables or set them to 0.
+
+Once configured, simply execute:
+
+$ scons
+
+After build, headers will be located in epi-X.X.X/include and libraries in 
+epi-X.X.X/lib.
+
+Other targets are:
+
+$ scons doc
+$ scons check
+$ scons sample 
+
+'scons -h' for more info.
+
+You can set configuration options in command line:
+
+$ scons EI_INC='/path/to/erl_interface/include/' \
+	EI_LIB='/path/to/erl_interface/lib/' \
+	OPENTHREADS_INC='/path/to/openthreads/include/'
+  
+
+Installing:
+~~~~~~~~~~~
+
+Actually the library can't be installed.  
+
+
+Using the library:
+~~~~~~~~~~~~~~~~~~
+
+Actually the library is not installed, so you must include the headers from
+the epi-X.X.X/include directory. 
+
+To use the EPI library simply include the "epi.hpp" file in your code.
+
+Actually epi is a static library, and must be staticly linked. You must link
+the ei and openthreads library too:
+
+$ gcc mynode.cpp -I/path/to/epi/include -L/path/to/epi/lib -lepi -lei -lopenthreads
+
+Documentation:
+~~~~~~~~~~~~~~
+
+Documentation can be generated using Doxygen - http://www.doxygen.org. 
+Just exec:
+
+$ scons doc
+
+and the documentation will be generated in docs/ directory.
+
+Language Issues:
+~~~~~~~~~~~~~~~~
+
+I known, and I'm sorry, my english is poor. I have to study a lot more. 
+
+Anyway I tried to document all the library code and specially all the public
+interfaces. I think that is much better a comment like:
+
+  /** This function return pointer which must be deleted */ 
+  void *f();
+
+than:
+
+  void *f();
+
+is not? ;)
+
+Bugs, comments, language corrections and other feedback:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can send them all to keymon@gmail.com. Feedback is really appreciated. 
+
+I'm specially insterested in C++ coding suggestions (This is my first 
+C++ project). 
+
+Language corrections in documentation are also appreciated, and everyone can colaborate.
+
+Bugs, of cuorse, are also wellcome. Please, if possible, send bugs with a 
+description of the crash and a sample code that makes it crash. 
+You can notify bugs in http://www.sourceforge.net/epi
+
+Contact:
+~~~~~~~~
+
+I can be contacted at: keymon@gmail.com
+

@@ -1,0 +1,29 @@
+#include "lfErlVariable.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlVariable, lfIErlTerm, lfIErlVariable);
+
+/**
+ * Construct from a string.
+ */
+lfErlVariable::lfErlVariable(const char *aVariableName)
+{
+    mTerm = new ErlVariable(aVariableName);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlVariable::lfErlVariable(ErlVariable *aVariable) {
+    mTerm = aVariable;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlVariable::~lfErlVariable()
+{
+  /* destructor code */
+}
+
+/* readonly attribute string name; */
+NS_IMETHODIMP lfErlVariable::GetName(char * *aName)
+{
+    XPCOM_STRING_RETURN(mTerm->getName().c_str(), aName);
+}
+

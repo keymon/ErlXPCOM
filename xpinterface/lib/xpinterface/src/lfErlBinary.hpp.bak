@@ -1,0 +1,39 @@
+#ifndef _LFERLBINARY_H
+#define _LFERLBINARY_H
+
+#include <epi.hpp>
+
+#include "lfIErlBinary.h"
+#include "lfErlTerm.hpp"
+
+using namespace epi::type;
+using namespace epi::error;
+
+class lfErlBinary : public lfIErlBinary
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIERLBINARY;
+
+    // Methods from lfIErlTerm
+    NS_FORWARD_LFIERLTERM(_lfErlTerm_impl.);
+
+    lfErlBinary(const PRUint8 *data, const PRUint32 size);
+
+    lfErlBinary(ErlBinary *aBinary);
+
+private:
+    virtual ~lfErlBinary();
+
+protected:
+    /* additional members */
+
+    // The internal representation of the term
+    ErlTermPtr<ErlBinary> mTerm;
+
+    // Implementation of lfErlTerm methods
+    lfErlTerm_Impl _lfErlTerm_impl;
+
+};
+
+#endif

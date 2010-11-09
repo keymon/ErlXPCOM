@@ -1,0 +1,77 @@
+/*
+***** BEGIN LICENSE BLOCK *****
+
+This file is part of the EPI (Erlang Plus Interface) Library.
+
+Copyright (C) 2005 Hector Rivas Gandara <keymon@gmail.com>
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+***** END LICENSE BLOCK *****
+*/
+
+#include "nsISupports.idl"
+#include "lfIVariableBinding.idl"
+
+/* Native type for ErlTerm */
+[ptr] native lfNativeErlTerm(epi::type::ErlTerm);
+
+[scriptable, uuid(c286c293-505a-48fc-9e7b-278140c19f66)]
+
+interface lfIErlTerm : nsISupports
+{
+    /** Returns the String representation of the term */
+    string toString();
+
+    /**
+     * Returns the String representation of the term,
+     * using a VariableBinding
+     */
+    string toStringWithBinding(in lfIVariableBinding binding);
+
+    /** Checks if the ErlTerm contains a valid value (is initializated) */
+    boolean isValid();
+
+    /**
+     * Check if two terms are equal
+     */
+    boolean equals(in lfIErlTerm term);
+
+    /**
+     * Perfom a pattern matching
+     */
+    boolean match(in lfIErlTerm pattern);
+
+    /**
+     * Perfom a pattern matching using a variable binding. If success
+     * VariableBinding will be updated with new variables.
+     */
+    boolean matchWithBinding(in lfIErlTerm pattern, in lfIVariableBinding binding);
+
+    /**
+     * Returns the equivalent without inner variables, using the
+     * given binding to substitute them.
+     */
+    lfIErlTerm subst(in lfIVariableBinding binding);
+
+
+    /**
+     * Returns the native EPI representation (ErlTerm *) of this ErlTerm.
+     */
+    [noscript] lfNativeErlTerm getErlTerm();
+
+};
+
+

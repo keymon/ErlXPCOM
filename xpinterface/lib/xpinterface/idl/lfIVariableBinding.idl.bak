@@ -1,0 +1,34 @@
+#include "nsISupports.idl"
+
+
+[scriptable, uuid(c286c293-505a-48fc-9e7b-278140c19f66)]
+interface lfIErlTerm;
+
+/* Native type VariableBinding */
+[ptr] native lfNativeVariableBinding(epi::type::VariableBinding);
+
+[scriptable, uuid(7c1c01ae-efa3-4e12-bf03-5b9f8f7b422f)]
+interface lfIVariableBinding : nsISupports {
+
+    /**
+     * Search a bound variable by name
+     * @param name name to search
+     * @return term if it is bound, null otherwise
+     */
+    lfIErlTerm search(in string name);
+
+    /**
+     * bind a variable to a term
+     * @param name variable name to bind
+     * @param term ErlTerm to bind to this variable
+     */
+    void bind(in string name, in lfIErlTerm term);
+
+    /**
+     * Returns the native EPI representation
+     * (VariableBinding *) of this binding.
+     */
+    [noscript] lfNativeVariableBinding getNative();
+
+};
+

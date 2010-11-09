@@ -1,0 +1,34 @@
+#ifndef _LFNODE_H
+#define _LFNODE_H
+
+#include <epi.hpp>
+
+#include "lfAbstractNode.hpp"
+#include "lfINode.h"
+
+using namespace epi::node;
+using namespace epi::error;
+
+class lfNode : public lfINode
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFINODE;
+
+    // Forward implementation of lfIAbstractNode and lfILocalNode functions
+    NS_FORWARD_LFIABSTRACTNODE(mAbstractNodeImpl.);
+
+    lfNode(const char *aNodeName, const char *aCookie)
+            throw (EpiBadArgument, EpiConnectionException);
+
+
+private:
+    virtual ~lfNode();
+
+protected:
+    AutoNode mAutoNode;
+
+    lfAbstractNode mAbstractNodeImpl;
+};
+
+#endif

@@ -1,0 +1,62 @@
+####################################################################################
+Import('env')
+debug = env.get('debug',0)
+ 
+####################################################################################
+# Source files 
+#
+erltypes_sources = Split(""" 
+	ErlTerm.cpp ErlAtom.cpp ErlDouble.cpp ErlLong.cpp 
+	ErlBinary.cpp ErlString.cpp ErlPid.cpp ErlPort.cpp ErlRef.cpp 
+	ErlList.cpp ErlConsList.cpp ErlEmptyList.cpp ErlTuple.cpp 
+	ErlVariable.cpp VariableBinding.cpp ErlTermFormat.cpp
+	EpiException.cpp 
+	""")
+	
+epi_sources = erltypes_sources + Split("""
+	Socket.cpp EIBuffer.cpp EIInputBuffer.cpp EIOutputBuffer.cpp PlainBuffer.cpp 
+	EpiConnection.cpp EIConnection.cpp EpiUtil.cpp EpiMessage.cpp GenericQueue.cpp
+	EpiMailBox.cpp PatternMatchingGuard.cpp MatchingCommandGuard.cpp ComposedGuard.cpp 
+	EpiReceiver.cpp EpiSender.cpp EpiObserver.cpp ErlangTransportManager.cpp 
+	EITransport.cpp EpiNode.cpp EpiLocalNode.cpp EpiAutoNode.cpp ErlangTransportManager.cpp
+	""")
+	
+if debug:	
+	epidebug_sources = ['Debug.cpp']
+else:
+	epidebug_sources = []
+	
+#####################################################################################
+# Public headers
+epi_headers = Split("""
+	ComposedGuard.hpp Debug.hpp EIBuffer.hpp EIConnection.hpp EIInputBuffer.hpp
+	EIOutputBuffer.hpp EITransport.hpp EpiAutoNode.hpp EpiBuffer.hpp EpiConnection.hpp
+	EpiError.hpp EpiException.hpp EpiInputBuffer.hpp EpiLocalNode.hpp EpiMailBox.hpp 
+	EpiMessage.hpp EpiNode.hpp EpiObserver.hpp EpiOutputBuffer.hpp EpiReceiver.hpp 
+	EpiSender.hpp EpiUtil.hpp ErlAtom.hpp ErlBinary.hpp ErlConsList.hpp ErlDouble.hpp 
+	ErlEmptyList.hpp ErlList.hpp ErlLong.hpp ErlPid.hpp ErlPort.hpp ErlRef.hpp 
+	ErlString.hpp ErlTerm.hpp ErlTermImpl.hpp ErlTermPtr.hpp ErlTuple.hpp ErlTypes.hpp 
+	ErlVariable.hpp ErlangTransport.hpp ErlangTransportFactory.hpp 
+	ErlangTransportManager.hpp GenericQueue.hpp MatchingCommand.hpp 
+	MatchingCommandGuard.hpp PatternMatchingGuard.hpp PlainBuffer.hpp Socket.hpp
+	VariableBinding.hpp epi.hpp Config.hpp nodebug.h
+	""")	
+	
+######################################################################################	
+liberltypes = env.Library('erltypes', erltypes_sources + epidebug_sources)
+libepi = env.Library('epi', epi_sources + epidebug_sources)
+
+install_libs = env.Install('#lib',  [libepi, liberltypes])
+install_headers = env.Install('#include', epi_headers)   
+
+Alias('build_epi', liberltypes)
+Alias('build_epi', libepi)
+Alias('build_epi', install_libs)
+Alias('build_epi', install_headers)
+
+Default('build_epi')
+
+# Doxygen dependency
+env.Depends('doc', epi_headers)
+
+

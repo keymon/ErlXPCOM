@@ -1,0 +1,29 @@
+#ifndef __LFXPINTERFACEHELPER_HPP
+#define __LFXPINTERFACEHELPER_HPP
+
+#include <epi.hpp>
+
+#include "lfIXPInterfaceHelper.h"
+
+class lfXPInterfaceHelper : public lfIXPInterfaceHelper
+{
+    public:
+        NS_DECL_ISUPPORTS;
+        NS_DECL_LFIXPINTERFACEHELPER;
+
+        lfXPInterfaceHelper();
+        /**
+         * Encapsulate an ErlTerm into an lfIErlTerm. The returned lfIErlTerm is not
+         * reference count added.
+         */
+        static lfIErlTerm *fromErlTerm(epi::type::ErlTerm * aErlTerm);
+
+    private:
+        virtual ~lfXPInterfaceHelper();
+
+    protected:
+        /* additional members */
+};
+
+#endif // __LFXPINTERFACEHELPER_HPP
+

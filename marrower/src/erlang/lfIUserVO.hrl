@@ -1,0 +1,3 @@
+-define(LFIUSERVO_IID, "3c6f4ac1-79db-4196-b9b6-45723ff8c20e").
+-define(ONLINE, 0).
+-define(OFFLINE, 1).

@@ -1,0 +1,72 @@
+/*
+***** BEGIN LICENSE BLOCK *****
+
+This file is part of the XPInterface Component.
+
+Copyright (C) 2005 Hector Rivas Gandara <keymon@gmail.com>
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+***** END LICENSE BLOCK *****
+*/
+
+#include "lfErlBinary.hpp"
+#include "lfErlTerm.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlBinary, lfIErlTerm, lfIErlBinary);
+
+lfErlBinary::lfErlBinary(const PRUint8 *data, const PRUint32 size)
+{
+    mTerm = new ErlBinary(data, size, true, true);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlBinary::lfErlBinary(ErlBinary *aBinary)
+{
+    mTerm = aBinary;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlBinary::~lfErlBinary()
+{
+}
+
+/* readonly attribute unsigned long size; */
+NS_IMETHODIMP lfErlBinary::GetSize(PRUint32 *aSize)
+{
+    try {
+        XPCOM_VALUE_RETURN(mTerm->size(), aSize);
+    } catch (EpiInvalidTerm* e) {
+        delete e;
+        return NS_ERROR_NOT_INITIALIZED;
+    }
+}
+
+/* octet elementAt (in unsigned long position); */
+NS_IMETHODIMP lfErlBinary::ElementAt(PRUint32 position, PRUint8 *_retval)
+{
+    if (position >= mTerm->size()) {
+        try {
+            XPCOM_VALUE_RETURN(((PRUint8 *)mTerm->binaryData())[position], _retval);
+        } catch (EpiInvalidTerm* e) {
+            delete e;
+            return NS_ERROR_NOT_INITIALIZED;
+        }
+    } else {
+        return NS_ERROR_INVALID_ARG;
+    }
+
+}
+

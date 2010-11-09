@@ -1,0 +1,33 @@
+import os
+
+Import('*')
+
+xpinterface_sources = Split("""
+	lfException.cpp lfXPInterfaceHelper.cpp lfErlTerm.cpp lfErlAtom.cpp lfErlBinary.cpp
+	lfErlLong.cpp lfErlDouble.cpp lfErlString.cpp  lfErlPid.cpp lfErlPort.cpp 
+	lfErlRef.cpp lfErlConsList.cpp lfErlEmptyList.cpp lfErlTuple.cpp lfErlVariable.cpp
+	lfVariableBinding.cpp lfMailBox.cpp lfAbstractNode.cpp lfNode.cpp 
+	xpinterface.cpp 
+	""")
+
+env.Append(CPPPATH = Dir("../idl"))
+
+xpinterface = env.SharedLibrary('xpinterface', xpinterface_sources)
+
+# test for unknown symbols
+env_test = env.Copy()
+env_test.Append(LIBS='xpinterface', LIBPATH=Dir("."))
+env_test.Program('main.cpp')
+
+# Install component
+
+install_xpinterface = Install(MOZILLA_COMPONENTS_PATH, xpinterface) 
+Alias('install', install_xpinterface)
+
+# Register component
+#REGXPCOM = (os.path.join(MOZILLA_DIST_BIN, 'run-mozilla.sh') + " " + 
+#			os.path.join(MOZILLA_DIST_BIN, 'regxpcom'))
+
+#register_xpinterface = Command('_', install_xpinterface, REGXPCOM + " $SOURCE")
+#Alias('install', register_xpinterface)
+

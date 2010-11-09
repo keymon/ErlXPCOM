@@ -1,0 +1,39 @@
+#include "lfErlPort.hpp"
+#include "lfErlTerm.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlPort, lfIErlTerm, lfIErlPort);
+
+lfErlPort::lfErlPort(const char *node, PRUint32 id, PRUint32 creation)
+{
+    mTerm = new ErlPort(node, id, creation);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlPort::lfErlPort(ErlPort *aPort)
+{
+    mTerm = aPort;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlPort::~lfErlPort()
+{
+}
+
+/* readonly attribute string node; */
+NS_IMETHODIMP lfErlPort::GetNode(char * *aNode)
+{
+    XPCOM_STRING_RETURN(mTerm->node().c_str(), aNode);
+}
+
+/* readonly attribute long id; */
+NS_IMETHODIMP lfErlPort::GetId(PRUint32 *aId)
+{
+    XPCOM_VALUE_RETURN(mTerm->id(), aId);
+}
+
+/* readonly attribute long creation; */
+NS_IMETHODIMP lfErlPort::GetCreation(PRUint32 *aCreation)
+{
+    XPCOM_VALUE_RETURN(mTerm->creation(), aCreation);
+}
+

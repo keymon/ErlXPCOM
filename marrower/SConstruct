@@ -1,0 +1,117 @@
+import os
+import re
+
+####################################################################################
+# Command line options
+#
+opts = Options('custom.py')
+opts.AddOptions(
+	PathOption('MOZILLA_DIST', 'Path to mozilla distribution directory', ""), 
+	PathOption('MOZILLA_COMPONENTS', 'Path where components will be installed', ""), 
+	PathOption('ERLXPCOM', 'Path to erlxpcom erlang files', ""), 
+	('ERLC', 'Path to erlang compiler', 'erlc'), 
+	BoolOption('debug', 'debug build', 1)
+	)
+
+
+####################################################################################
+# Default environment (using os environment)
+env = Environment(options=opts, ENV = os.environ)
+				  
+####################################################################################
+# Mozilla dependency
+MOZILLA_DIST = env.get('MOZILLA_DIST',0)
+
+if MOZILLA_DIST == 0:
+	print "Can't locate mozilla dist directory"
+	sys.exit()
+
+MOZILLA_UTIL_PATH = os.path.join(MOZILLA_DIST,'bin')
+MOZILLA_DIST_BIN = os.path.join(MOZILLA_DIST,'bin')
+
+MOZILLA_IDLPATH = [ os.path.join(MOZILLA_DIST+'idl') ]
+
+#MOZILLA_COMPONENTS_PATH = env.get('MOZILLA_COMPONENTS')
+#if (MOZILLA_COMPONENTS_PATH = 0) {
+#	MOZILLA_COMPONENTS_PATH = os.path.join(MOZILLA_DIST_BIN, 'components')
+#}
+MOZILLA_COMPONENTS_PATH = env.get('MOZILLA_COMPONENTS', os.path.join(MOZILLA_DIST_BIN, 'components'))
+
+env.Append(IDLPATH = MOZILLA_IDLPATH )
+
+###################################################################################
+# XPIDL Builders
+XPIDL_COMMAND = os.path.join(MOZILLA_DIST_BIN, 'xpidl')
+
+typelibrary_builder = Builder(
+			generator = lambda source, target, env, for_signature:
+				XPIDL_COMMAND + 
+				reduce(lambda acum, path: acum+' -I'+str(path), 
+					[""] + env.get('IDLPATH', "")) + 
+				' -m typelib -e $TARGET $SOURCES' ,
+    	    suffix = '.xpt',
+            src_suffix = '.idl')
+            
+interfaceheader_builder = Builder(
+			generator = lambda source, target, env, for_signature:
+				XPIDL_COMMAND + 
+				reduce(lambda acum, path: acum+' -I'+str(path), 
+					[""] + env.get('IDLPATH', "")) + 
+				' -m header -e $TARGET $SOURCES' ,
+			suffix = '.h',
+			src_suffix = '.idl')
+			
+env.Append(BUILDERS = {'TypeLibrary': typelibrary_builder})
+env.Append(BUILDERS = {'InterfaceHeader': interfaceheader_builder})
+
+				  
+###################################################################################
+# Erlang Builder
+ERLC = env.get('ERLC','erlc')
+ERLXPCOM = env.get('ERLXPCOM',0)
+env.Append(ERLINCLUDE = ERLXPCOM)
+env.Append(ERLPATH = ERLXPCOM)
+
+erlang_include_re = re.compile(r'^-include\s*\(\s*[\"\'](.*)[\"\']\s*\)\s*\.\s*$', re.M)
+erlang_behaviour_re = re.compile(r'^-behaviour\s*\(\s*(.*)\s*\)\s*\.\s*$', re.M)
+
+def erlanginclude_scan(node, env, path):
+	contents = node.get_contents()
+	includes = erlang_include_re.findall(contents)
+	return includes
+	
+def erlangbehaviour_scan(node, env, path):
+	contents = node.get_contents()
+	behaviours = map(lambda file: file+'.erl', 
+					 erlang_behaviour_re.findall(contents))
+	return behaviour
+
+erlangscan = Scanner(function = erlanginclude_scan,
+					 skeys = ['.erl', '.hrl'],
+					 recursive = 1)
+#env.Append(SCANNERS = erlangscan)
+
+beam_builder = Builder(
+			generator = 
+				lambda source, target, env, for_signature:
+					ERLC + 
+					# Append include entries
+					reduce(lambda acum, path: acum+' -I '+str(path), 
+						[""] + env.get('ERLINCLUDE', [])) + 
+					# Append path entries
+					reduce(lambda acum, path: acum+' -pa '+str(path), 
+						[""] + env.get('ERLPATH', [])) + 
+					# Append flabs
+					reduce(lambda acum, path: acum+' '+str(path), 
+						[""] + env.get('ERLFLAGS', [])) + 
+					' -o' + os.path.dirname(str(source[0])) +' $SOURCES' ,
+    	    suffix = '.beam',
+            src_suffix = '.erl')
+            
+env.Append(BUILDERS = {'Beam': beam_builder})
+
+###################################################################################
+Export('env', 'MOZILLA_COMPONENTS_PATH')	
+
+
+SConscript('src/erlang/SConstruct')

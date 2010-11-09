@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="./default.css" type="text/css"?>
+<?xul-overlay href="overlay/users.xul"?>
+<?xul-overlay href="overlay/tasks.xul"?>
+<?xul-overlay href="overlay/task_details.xul"?>
+
+
+<!DOCTYPE window [
+<!ENTITY main.userInfo						"Info">
+<!ENTITY main.userEdit						"Editar">
+<!ENTITY main.userPanel.head.user			"Usuarios">
+<!ENTITY main.task-viewall                  "Ver todas">
+<!ENTITY main.task-edit						"Editar">
+<!ENTITY main.user-chat						"Conversacion">
+<!ENTITY main.add							"Añadir">
+<!ENTITY main.remove						"Borrar">
+<!ENTITY main.connect						"Conectar">
+
+<!ENTITY user.details           "Información do usuario">
+<!ENTITY user.login				"Conta">
+<!ENTITY user.alias				"Apodo">
+<!ENTITY user.firstname         "Nome">
+<!ENTITY user.lastname          "Apelidos">
+<!ENTITY user.email				"Email">
+<!ENTITY user.address           "Dirección">
+<!ENTITY user.birthdate         "Cumpreanos">
+
+<!ENTITY task.name				"Nome de tarefa">
+<!ENTITY task.description		"Descripción">
+<!ENTITY task.duration			"Duración">
+<!ENTITY task.completion		"Progreso">
+<!ENTITY task.state				"Estado">
+<!ENTITY task.priority			"Prioridad">
+<!ENTITY task.assigned-to		"Asignado a...">
+<!ENTITY task.details           "Detalles da tarefa">
+<!ENTITY task.predepends		"Predecesoras">
+<!ENTITY task.postdepends		"Sudecesoras">
+
+<!ENTITY task.state.completed	"Completado">
+<!ENTITY task.state.inprogress	"En progreso">
+<!ENTITY task.state.stoped		"Detido">
+<!ENTITY task.state.canceled	"Cancelado">
+
+<!ENTITY task.priority.high		"Alta">
+<!ENTITY task.priority.medium	"Normal">
+<!ENTITY task.priority.low		"Baixa">
+
+]>
+
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="marrower-main-window"  
+	title="Marrower XUL"
+    orient="horizontal" flex="1" onload="main()">
+	
+<!-- Include Javascript -->
+<script src="utils.js" type="application/x-javascript"/>
+<script src="controller.js" type="application/x-javascript"/>
+<script src="marrower.js" type="application/x-javascript"/>
+	
+<command id="show-user-info" 
+	onpopupshowing="myMarrowerController.updateUserInfo(document.tooltipNode.getAttribute('id'))"/>
+<command id="show-user-tasks"
+	onselect="myMarrowerController.getUserTasks(this.selectedItem.getAttribute('id'));
+			  myMarrowerController.refreshTasks()"/>
+<command id="task-edit" oncommand="myMarrowerController.editTask();"/>
+
+	<popupset id="marrower-popupset">
+		<tooltip id="userinfo" 
+				 orient="vertical" 
+				 command="show-user-info">
+		<grid >
+			<columns><column/><column flex="1" align="right"/></columns>
+			<rows>
+			<row align="center">
+				<label value="&user.login;"/>
+				<label id="user-info-name" value="carlos"/>
+			</row>
+			<row align="center">
+				<label value="&user.alias;"/>
+				<label id="user-info-alias" value="Carlitos"/>
+			</row>
+			<row align="center">
+				<label value="&user.firstname;"/>
+				<label id="user-info-firstname" value="Carlos"/>
+			</row>
+			<row align="center">
+				<label value="&user.lastname;"/>
+				<label id="user-info-lastname" value="Iglesias"/>
+			</row>
+			<row align="center">
+				<label value="&user.email;"/>
+				<label id="user-info-email" value="carlos@udc.es"/>
+			</row>
+			<row align="center">
+				<label value="&user.birthdate;"/>
+				<label id="user-info-birthdate" value="8/6/1982"/>
+			</row>
+			</rows>
+		</grid>
+	</tooltip>
+    <popup id="add-remove-menu">
+		<menuitem label="&main.add;"/>
+		<menuitem label="&main.remove;"/>
+	</popup>
+    <popup id="add-menu">
+		<menuitem label="&main.add;"/>
+	</popup>
+
+	</popupset>
+	
+	<!-- Lista de usuarios -->
+	<vbox id="user-panel"/>
+	
+	<vbox flex="1" >
+		<!-- Lista de tarefas -->
+		<vbox id="task-panel"/>
+		
+		<splitter collapse="after" resizeafter="farthest">
+			<grippy/>
+		</splitter>
+		<!-- detalles da tarefa -->
+		<groupbox id="task-details"/>
+		
+	</vbox>
+</window>

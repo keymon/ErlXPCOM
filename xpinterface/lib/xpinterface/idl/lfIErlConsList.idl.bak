@@ -1,0 +1,20 @@
+#include "lfIErlList.idl"
+
+[scriptable, uuid(9508b8cc-09fa-4c6b-a929-2d811b712f49)]
+
+interface lfIErlConsList: lfIErlList
+{
+    /**
+     * Add elements to the list, before the tail.
+     * @param elem a pointer to the element to use as element.
+     */
+    void addElement(in lfIErlTerm elem);
+
+    /**
+     * Set the last tail of the list. Normaly, the last tail is
+     * an empty list, becoming this list a proper list.
+     * @param elem a pointer to the element to use as element.
+     */
+    void close(in lfIErlTerm elem);
+};
+

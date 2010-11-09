@@ -1,0 +1,30 @@
+#ifndef _LFVARIABLEBINDING_H
+#define _LFVARIABLEBINDING_H
+
+#include <epi.hpp>
+#include "lfIVariableBinding.h"
+
+using namespace epi::type;
+
+class lfVariableBinding : public lfIVariableBinding
+{
+public:
+    NS_DECL_ISUPPORTS;
+    NS_DECL_LFIVARIABLEBINDING;
+
+    lfVariableBinding();
+
+private:
+    virtual ~lfVariableBinding();
+
+protected:
+
+    /*
+     * wrapped binding. No function returns a binding, so
+     * we will use the class directly, not a pointer
+     */
+    VariableBinding mBinding;
+
+};
+
+#endif

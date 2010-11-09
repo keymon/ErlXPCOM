@@ -1,0 +1,58 @@
+#include "lfErlRef.hpp"
+#include "lfErlTerm.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlRef, lfIErlTerm, lfIErlRef);
+
+lfErlRef::lfErlRef(const char *node, PRUint32 ids[],
+                   PRUint32 creation, const bool newStyle)
+{
+    mTerm = new ErlRef(node, ids, creation, newStyle);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlRef::lfErlRef(ErlRef *aRef)
+{
+    mTerm = aRef;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlRef::~lfErlRef()
+{
+}
+
+/* readonly attribute string node; */
+NS_IMETHODIMP lfErlRef::GetNode(char * *aNode)
+{
+    XPCOM_STRING_RETURN(mTerm->node().c_str(), aNode);
+}
+
+/* readonly attribute long id0; */
+NS_IMETHODIMP lfErlRef::GetId0(PRUint32 *aId0)
+{
+    XPCOM_VALUE_RETURN(mTerm->id(0), aId0);
+}
+
+/* readonly attribute long id1; */
+NS_IMETHODIMP lfErlRef::GetId1(PRUint32 *aId1)
+{
+    XPCOM_VALUE_RETURN(mTerm->id(1), aId1);
+}
+
+/* readonly attribute long id2; */
+NS_IMETHODIMP lfErlRef::GetId2(PRUint32 *aId2)
+{
+    XPCOM_VALUE_RETURN(mTerm->id(2), aId2);
+}
+
+/* readonly attribute boolean newStyle; */
+NS_IMETHODIMP lfErlRef::GetNewStyle(PRBool *aNewStyle)
+{
+    XPCOM_VALUE_RETURN(mTerm->isNewStyle(), aNewStyle);
+}
+
+/* readonly attribute long creation; */
+NS_IMETHODIMP lfErlRef::GetCreation(PRUint32 *aCreation)
+{
+    XPCOM_VALUE_RETURN(mTerm->creation(), aCreation);
+}
+

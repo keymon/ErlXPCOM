@@ -1,0 +1,26 @@
+#include "lfErlString.hpp"
+#include "lfErlTerm.hpp"
+
+NS_IMPL_ISUPPORTS2(lfErlString, lfIErlTerm, lfIErlString);
+
+lfErlString::lfErlString(const char *value)
+{
+    mTerm = new ErlString(value);
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlString::lfErlString(ErlString *aString) {
+    mTerm = aString;
+    _lfErlTerm_impl.init(mTerm.get());
+}
+
+lfErlString::~lfErlString()
+{
+}
+
+/* readonly attribute string value; */
+NS_IMETHODIMP lfErlString::GetValue(char * *aValue)
+{
+    XPCOM_STRING_RETURN(mTerm->stringValue().c_str(), aValue);
+}
+

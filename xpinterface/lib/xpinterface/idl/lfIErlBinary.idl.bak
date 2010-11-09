@@ -1,0 +1,14 @@
+#include "lfIErlTerm.idl"
+
+[scriptable, uuid(ab722e30-bb32-4896-a27e-7fac09c4f163)]
+
+interface lfIErlBinary: lfIErlTerm
+{
+    /** binary size */
+    readonly attribute unsigned long size;
+
+    /** Get one element by position */
+    octet elementAt(in unsigned long position);
+
+
+};
